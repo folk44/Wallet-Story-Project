@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "income.h"
 int main( )
 {
 	int menu, balance = 0;
@@ -25,12 +26,11 @@ int main( )
 		
 		//Go to selected menu.
 		switch(menu){
-			case 1: printf("Go to menu 1.\n"); break;
+			case 1: Hello(); break;
 			case 2: printf("Go to menu 2.\n"); break;
 			case 3: printf("Go to menu 3.\n"); break;
 			default: printf("Thank you.");
 		}
-		delay(300);
 	}while(menu != 0);
 	return 0;
 }
