@@ -1,7 +1,7 @@
 // Go to Menu1
 void Menu1();
 
-//For input many times. Only string.
+//For input many times. Only string. text for constant string not variable, input for input string variable.
 void UserInput(const char* text,char* input){
 	printf("%s : ",text);
 	fflush(stdin);
