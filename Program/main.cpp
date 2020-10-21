@@ -5,6 +5,8 @@
 #include "income.h"
 int main( )
 {
+	Menu1();
+	/*
 	int menu, balance = 0;
 	do{
 		system("cls");
@@ -26,11 +28,12 @@ int main( )
 		
 		//Go to selected menu.
 		switch(menu){
-			case 1: Hello(); break;
+			case 1: Menu1(); break;
 			case 2: printf("Go to menu 2.\n"); break;
 			case 3: printf("Go to menu 3.\n"); break;
 			default: printf("Thank you.");
 		}
 	}while(menu != 0);
+	*/
 	return 0;
 }
