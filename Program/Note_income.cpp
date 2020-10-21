@@ -6,7 +6,6 @@
 #include <ctype.h>
 #include <dos.h>
 #include "income.h"
-void UserInput(char*);//For many input
 void Menu1(){
 	//Clear screen.
 	system("cls");
@@ -31,28 +30,19 @@ void Menu1(){
 	
 	//Input each list.
 	//Input name.
-	printf("Name : ");
-	UserInput(name);
+	UserInput("Name",name);
 	//Input type.(Separate income and expense)
 	
 	//Input detail.
-	printf("Detail(If not want, press Enter.) : ");
-	UserInput(detail);
+	UserInput("Detail(If not want, press Enter.) : ",detail);
 	//Input amount.
 	printf("Amount : ");
 	scanf("%d",&amount);
 	
+	//For check variable.
+	/*
 	printf("Name : %s\n",name);
 	printf("Detail : %s\n",detail);
 	printf("Amount : %d\n",amount);
-}
-void UserInput(char* input){
-	fflush(stdin);
-	gets(input);//Input.
-	if(strcmp(input,"\0") == 0) strcpy(input,"-");//When input nothing.
-	
-	//Make text to Uppercase.
-	for(int i = 0; i < strlen(input); i++){
-		input[i] = toupper(input[i]);
-	}
+	*/
 }
