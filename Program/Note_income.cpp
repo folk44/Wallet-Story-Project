@@ -1,11 +1,3 @@
-#include <graphics.h>
-#include <stdio.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <ctype.h>
-#include <dos.h>
 #include "income.h"
 void Type_list(int*);
 void Menu1(){

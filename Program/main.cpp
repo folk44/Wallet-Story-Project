@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <dos.h>
 #include "income.h"
-int main( )
+int main()
 {
 	int menu, balance = 0;
 	do{
