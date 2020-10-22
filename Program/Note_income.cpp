@@ -22,12 +22,7 @@ void Menu1(){
 	printf("\nAdd item to list.\n\n");
 	
 	//Input Income of Expense.
-	do{
-		printf("Income(Press 1) or Expense(Press 0) : ");
-		scanf("%d",&inex);
-		//Check valid choice.
-		if(inex != 1 && inex != 0) printf("Invalid choice. Please try again.\n"); //Inform user.
-	}while(inex != 1 && inex != 0);
+	InvalidInput("Income(Press 1) or Expense(Press 0) : ",&inex,0,1);
 	
 	//Input each list.
 	//Input name.
@@ -37,12 +32,17 @@ void Menu1(){
 	Type_list(&type);
 	
 	//Input detail.
-	UserInput("Detail(If not want, press Enter.) : ",detail);
+	UserInput("Detail(If not want, press Enter.)",detail);
 	//Input amount.
 	printf("Amount : ");
 	scanf("%d",&amount);
 	
-	printf("%d",type);
+	if(inex == 1) printf("\nIncome.\n");
+	else printf("\nExpense.\n");
+	printf("Name : %s\n",name);
+	printf("Type : %d\n",type);
+	printf("Detail : %s\n",detail);
+	printf("Amount : %d\n",amount);
 }
 void Type_list(int* type_){
 	char list_type [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
