@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include <dos.h>
 #include "income.h"
+void Type_list(int*);
 void Menu1(){
 	//Clear screen.
 	system("cls");
@@ -31,7 +32,9 @@ void Menu1(){
 	//Input each list.
 	//Input name.
 	UserInput("Name",name);
+	
 	//Input type.(Separate income and expense)
+	Type_list(&type);
 	
 	//Input detail.
 	UserInput("Detail(If not want, press Enter.) : ",detail);
@@ -39,10 +42,13 @@ void Menu1(){
 	printf("Amount : ");
 	scanf("%d",&amount);
 	
-	//For check variable.
-	/*
-	printf("Name : %s\n",name);
-	printf("Detail : %s\n",detail);
-	printf("Amount : %d\n",amount);
-	*/
+	printf("%d",type);
+}
+void Type_list(int* type_){
+	char list_type [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
+	printf("Type: \n");
+	for(int i = 0; i < 7; i++){
+		printf("%d. %s\n",i+1,list_type[i]);
+	}
+	InvalidInput("Press : ",type_,1,8);
 }
