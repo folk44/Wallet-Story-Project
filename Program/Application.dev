@@ -81,7 +81,11 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
+<<<<<<< HEAD
 FileName=Displaygraph.cpp
+=======
+FileName=Menu 3.cpp
+>>>>>>> 06d5fa8206fcd09c760d1903ea1a49568f706f65
 CompileCpp=1
 Folder=
 Compile=1
