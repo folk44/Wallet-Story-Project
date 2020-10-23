@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=3
 CompilerSettings=0000000100000000000000000
-UnitCount=4
+UnitCount=5
 
 [VersionInfo]
 Major=1
@@ -71,7 +71,31 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=Note_income.cpp
+FileName=Menu1.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+<<<<<<< HEAD
+
+[Unit4]
+<<<<<<< HEAD
+<<<<<<< HEAD
+FileName=Displaygraph.cpp
+=======
+FileName=Menu 3.cpp
+>>>>>>> 06d5fa8206fcd09c760d1903ea1a49568f706f65
+=======
+FileName=Menu 3.cpp
+>>>>>>> 06d5fa8206fcd09c760d1903ea1a49568f706f65
+=======
+
+[Unit4]
+FileName=GlobalFunction.cpp
+>>>>>>> main
 CompileCpp=1
 Folder=
 Compile=1
@@ -81,17 +105,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=GlobalFunction.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
-FileName=GlobalFunction.cpp
+FileName=Menu 3.cpp
 CompileCpp=1
 Folder=
 Compile=1

@@ -20,7 +20,11 @@ void Menu1(){
 		InvalidInput("Press : ",&menu,0,1);
 		
 		//If press 0, exit.
-		if(menu == 0) break;
+		if(menu == 0){
+			printf("Back to Main Menu \n");
+			delay(1000);
+			break;
+		} 
 		
 		
 		system("cls");
