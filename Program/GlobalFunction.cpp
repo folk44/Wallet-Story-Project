@@ -1,4 +1,4 @@
-#include "GlobalFunction.h"
+#include "income.h"
 void UserInput(const char* text,char* input){
 	printf("%s : ",text);
 	fflush(stdin);
