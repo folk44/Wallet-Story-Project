@@ -6,8 +6,7 @@ void Menu1(){
 	//amount: amount of money.
 	//name: name of item.
 	//detail: detail of item.
-	int inex, type, amount;
-	char name[50], detail[100];
+	struct list input;
 	
 	//Select menu.
 	int menu;
@@ -26,27 +25,27 @@ void Menu1(){
 		
 		system("cls");
 		//Input Income of Expense.
-		InvalidInput("Income(Press 1) or Expense(Press 0) : ",&inex,0,1);
+		InvalidInput("Income(Press 1) or Expense(Press 0) : ",&input.inex,0,1);
 		
 		//Input each list.
 		//Input name.
-		UserInput("Name",name);
+		UserInput("Name",input.name);
 		
 		//Input type.(Separate income and expense)
-		Type_list(&type);
+		Type_list(&input.type);
 		
 		//Input detail.
-		UserInput("Detail(If not want, press Enter.)",detail);
+		UserInput("Detail(If not want, press Enter.)",input.detail);
 		//Input amount.
 		printf("Amount : ");
-		scanf("%d",&amount);
+		scanf("%d",&input.amount);
 		
-		if(inex == 1) printf("\nIncome.\n");
+		if(input.inex == 1) printf("\nIncome.\n");
 		else printf("\nExpense.\n");
-		printf("Name : %s\n",name);
-		printf("Type : %d\n",type);
-		printf("Detail : %s\n",detail);
-		printf("Amount : %d\n",amount);
+		printf("Name : %s\n",input.name);
+		printf("Type : %d\n",input.type);
+		printf("Detail : %s\n",input.detail);
+		printf("Amount : %d\n",input.amount);
 		
 		delay(1000);
 	}while(menu != 0);
