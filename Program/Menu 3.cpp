@@ -1,9 +1,4 @@
-#include <graphics.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 #include "income.h"
-
 void Menu3()
 {
 	int menu3;
@@ -16,11 +11,7 @@ void Menu3()
 	printf("0: Back to Main Menu\n");
 	
 	//Check valid menu. If invalid, inform to user.
-	do{
-		printf("\nEnter your choice: ");
-		scanf("%d",&menu3);
-		if(menu3<0 || menu3>2) printf("Invalid choice. Please try again.\n");
-	}while(menu3<0 || menu3>2);
+	InvalidInput("\nEnter your choice: ",&menu3,0,2);
 	
 	//Go to selected menu.
 		switch(menu3){
