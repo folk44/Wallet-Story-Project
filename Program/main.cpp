@@ -5,12 +5,16 @@
 #include <ctype.h>
 #include <dos.h>
 #include "income.h"
-int main()
+int main(void)
 {
 	int menu, balance = 0;
+	int day,month,year;
 	do{
 		system("cls");
-		//Show Balanve
+		//Show date.
+		getDate(&day,&month,&year);
+		printf("Date : %02d/%02d/%d\n",day,month,year);
+		//Show Balance
 		printf("Balance : %d\n",balance);
 		
 		//Display Menu

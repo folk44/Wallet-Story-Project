@@ -18,3 +18,10 @@ void InvalidInput(const char* text, int* input, int min_con, int max_con){
 		if(*input < min_con || *input > max_con) printf("Invalid choice. Please try again.\n"); //Inform user.
 	}while(*input < min_con || *input > max_con);
 }
+void getDate(int* day, int* month,int* year){
+	time_t now = time(NULL);
+	struct tm *local = localtime(&now);
+	*day = local->tm_mday;
+	*month = local->tm_mon+1;
+	*year = local->tm_year+1900;
+}

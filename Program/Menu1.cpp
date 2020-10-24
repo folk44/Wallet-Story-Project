@@ -9,7 +9,7 @@ void Menu1(){
 	struct list input;
 	
 	//Select menu.
-	int menu;
+	int menu,inex;
 	do{
 		//Clear screen.
 		system("cls");
@@ -29,14 +29,14 @@ void Menu1(){
 		do{
 			system("cls");
 			//Input Income of Expense.
-			InvalidInput("Income(Press 1) or Expense(Press 0) : ",&input.inex,0,1);
+			InvalidInput("Income(Press 1) or Expense(Press 0) : ",&inex,0,1);
 			
 			//Input each list.
 			//Input name.
 			UserInput("Name",input.name);
 			
 			//Input type.(Separate income and expense)
-			Type_list(input.inex,&input.type);
+			Type_list(inex,&input.type);
 			
 			//Input detail.
 			UserInput("Detail(If not want, press Enter.)",input.detail);
@@ -45,7 +45,7 @@ void Menu1(){
 			scanf("%d",&input.amount);
 			
 			//Make sure user input correctly.
-			if(input.inex == 1) printf("\nIncome.\n");
+			if(inex == 1) printf("\nIncome.\n");
 			else printf("\nExpense.\n");
 			printf("Name : %s\n",input.name);
 			printf("Type : %d\n",input.type);
@@ -53,6 +53,18 @@ void Menu1(){
 			printf("Amount : %d\n",input.amount);
 			InvalidInput("Do you want to save?(Press 1(Yes),0(No)) : ",&menu,0,1);
 		}while(menu == 0);
+		
+		/*
+		//Set file name for putting input.
+		if(input.inex == 1){
+			
+		}
+		else{
+			
+		}
+		
+		//Move into the file
+		*/
 		
 		printf("Save successfully.\n");
 		

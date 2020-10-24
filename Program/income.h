@@ -14,7 +14,10 @@ void Menu3();
 void UserInput(const char*,char*);
 //To check invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number.
 void InvalidInput(const char*, int*, int, int);
+
+void getDate(int* day, int* month,int* year);
+
 struct list{
-	int inex, type, amount;
+	int type, amount;
 	char name[50], detail[100];
 };
