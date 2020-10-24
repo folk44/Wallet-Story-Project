@@ -21,10 +21,21 @@ void InvalidInput(const char* text, int* input, int min_con, int max_con){
 	}while(*input < min_con || *input > max_con);
 }
 //Get date. All of these parameter are pointer.
-void getDate(int* day, int* month,int* year){
+void getDate(char* date){
+	char day[3],month[3],year[5];
+	
+	//Get date, in the form of integer.
 	time_t now = time(NULL);
 	struct tm *local = localtime(&now);
-	*day = local->tm_mday;
-	*month = local->tm_mon+1;
-	*year = local->tm_year+1900;
+	
+	//Convert integer to string.
+	sprintf(day,"%02d",local->tm_mday);
+	sprintf(month,"%02d",local->tm_mon+1);
+	sprintf(year,"%d",local->tm_year+1900);
+	
+	strcat(date,day);
+	strcat(date,"-");
+	strcat(date,month);
+	strcat(date,"-");
+	strcat(date,year);
 }

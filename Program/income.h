@@ -12,9 +12,9 @@ void Menu1();
 void Menu3();
 void UserInput(const char*,char*);
 void InvalidInput(const char*, int*, int, int);
-void getDate(int*, int*,int*);
+void getDate(char*);
 
 struct list{
-	int type, amount, day, month, year;
+	int type, amount;
 	char name[50], detail[100];
 };

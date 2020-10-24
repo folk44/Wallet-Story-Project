@@ -7,13 +7,13 @@
 #include "income.h"
 int main(void)
 {
-	struct list main;
 	int menu, balance = 0;
+	char date[15] = {"\0"};
 	do{
 		system("cls");
 		//Show date.
-		getDate(&main.day,&main.month,&main.year);
-		printf("Date : %02d/%02d/%d\n",main.day,main.month,main.year);
+		getDate(date);
+		printf("Date : %s\n",date);
 		//Show Balance
 		printf("Balance : %d\n",balance);
 		
