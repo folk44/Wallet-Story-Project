@@ -10,14 +10,11 @@
 void Menu1();
 //Go to Menu3
 void Menu3();
-//For input many times. Only string. text for constant string not variable, input for input string variable.
 void UserInput(const char*,char*);
-//To check invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number.
 void InvalidInput(const char*, int*, int, int);
-
-void getDate(int* day, int* month,int* year);
+void getDate(int*, int*,int*);
 
 struct list{
-	int type, amount;
+	int type, amount, day, month, year;
 	char name[50], detail[100];
 };
