@@ -7,7 +7,7 @@
 #include <ctype.h>
 #include <dos.h>
 // Go to Menu1
-void Menu1();
+int Menu1();
 //Go to Menu3
 void Menu3();
 void UserInput(const char*,char*);

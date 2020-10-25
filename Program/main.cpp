@@ -5,9 +5,11 @@
 #include <ctype.h>
 #include <dos.h>
 #include "income.h"
-int main(void)
+int balance;
+int main()
 {
-	int menu, balance = 0;
+	int menu;
+	balance = 0;
 	char date[15] = {"\0"};
 	do{
 		system("cls");
@@ -28,7 +30,7 @@ int main(void)
 		
 		//Go to selected menu.
 		switch(menu){
-			case 1: Menu1(); break;
+			case 1: balance+=Menu1(); break;
 			case 2: printf("Go to menu 2.\n"); break;
 			case 3: Menu3(); break;
 			default: printf("Thank you.");

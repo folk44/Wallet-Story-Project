@@ -1,6 +1,6 @@
 #include "income.h"
 void Type_list(int,int*);
-void Menu1(){
+int Menu1(){
 	//inex: income or expense.
 	//type: type of item.
 	//amount: amount of money.
@@ -9,7 +9,7 @@ void Menu1(){
 	struct list input;
 	
 	//Select menu.
-	int menu,inex;
+	int menu,inex,all_amount = 0;
 	do{
 		//Clear screen.
 		system("cls");
@@ -54,22 +54,21 @@ void Menu1(){
 			InvalidInput("Do you want to save?(Press 1(Yes),0(No)) : ",&menu,0,1);
 		}while(menu == 0);
 		
-		/*
-		//Set file name for putting input.
-		if(input.inex == 1){
-			
+		//Set file name for putting input & Adding calculating balance.
+		if(inex == 1){
+			all_amount+=input.amount;
 		}
 		else{
-			
+			all_amount-=input.amount;
 		}
 		
 		//Move into the file
-		*/
 		
 		printf("Save successfully.\n");
 		
 		delay(1000);
 	}while(menu != 0);
+	return all_amount;
 }
 
 void Type_list(int inex , int* type_){
