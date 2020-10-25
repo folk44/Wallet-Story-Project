@@ -8,8 +8,20 @@
 int balance;
 int main()
 {
+	//Check file "balance.txt". If not, create one and set balance = 0.
+	FILE *fp;
+	if((fp = fopen("storage/balance.txt","r")) == NULL){
+		fp = fopen("storage/balance.txt","w");
+		fprintf(fp,"%d",0);
+		fclose(fp);
+	}
+	
+	//Open file balance.txt for getting balance.
+	fp = fopen("storage/balance.txt","r");
+	fscanf(fp,"%d",&balance);
+	fclose(fp);
+	
 	int menu;
-	balance = 0;
 	char date[15] = {"\0"};
 	do{
 		system("cls");
@@ -36,5 +48,11 @@ int main()
 			default: printf("Thank you.");
 		}
 	}while(menu != 0);
+	
+	//Save balance into balance.txt.
+	fp = fopen("storage/balance.txt","w+");
+	fprintf(fp,"%d",balance);
+	fclose(fp);
+	
 	return 0;
 }
