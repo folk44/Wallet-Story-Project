@@ -11,6 +11,7 @@ int Menu1(){
 	//Select menu.
 	int menu,inex,all_amount = 0;
 	do{
+		char filename[25] = "storage/";
 		//Clear screen.
 		system("cls");
 		
@@ -38,32 +39,40 @@ int Menu1(){
 			//Input type.(Separate income and expense)
 			Type_list(inex,&input.type);
 			
-			//Input detail.
-			UserInput("Detail(If not want, press Enter.)",input.detail);
 			//Input amount.
 			printf("Amount : ");
 			scanf("%d",&input.amount);
+			
+			//Input detail.
+			UserInput("Detail(If not want, press Enter.)",input.detail);
 			
 			//Make sure user input correctly.
 			if(inex == 1) printf("\nIncome.\n");
 			else printf("\nExpense.\n");
 			printf("Name : %s\n",input.name);
 			printf("Type : %d\n",input.type);
-			printf("Detail : %s\n",input.detail);
 			printf("Amount : %d\n",input.amount);
+			printf("Detail : %s\n",input.detail);
 			InvalidInput("Do you want to save?(Press 1(Yes),0(No)) : ",&menu,0,1);
 		}while(menu == 0);
 		
 		//Set file name for putting input & Adding calculating balance.
 		if(inex == 1){
 			all_amount+=input.amount;
+			strcat(filename,"in");
 		}
 		else{
 			all_amount-=input.amount;
+			strcat(filename,"out");
 		}
+		getDate(filename);
+		strcat(filename,".txt");
 		
 		//Move into the file
-		
+		FILE *fp;
+		fp = fopen(filename,"a+");
+		fprintf(fp,"%s %d %d %s\n",input.name,input.type,input.amount,input.detail);
+		fclose(fp);
 		printf("Save successfully.\n");
 		
 		delay(1000);
