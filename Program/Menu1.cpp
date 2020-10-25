@@ -1,5 +1,6 @@
 #include "income.h"
 void Type_list(int,int*);
+bool Valid_daymonth(int,int);
 int Menu1(){
 	//inex: income or expense.
 	//type: type of item.
@@ -12,6 +13,7 @@ int Menu1(){
 	int menu,inex,all_amount = 0;
 	do{
 		char filename[25] = "storage/";
+		char date[15] = "\0";
 		//Clear screen.
 		system("cls");
 		
@@ -46,13 +48,39 @@ int Menu1(){
 			//Input detail.
 			UserInput("Detail(If not want, press Enter.)",input.detail);
 			
+			//Ask input date. If not, fill date.
+			int chk_date;
+			char date[15] = "\0";
+			getDate(date);
+			printf("Do you want to save in current date(%s)?\n",date);
+			InvalidInput("Press 1(Yes),0(No) : ",&chk_date,0,1);
+			if(chk_date == 0){
+				
+				//Fill date.
+				int day,month,year;
+				printf("Input only number:\n");
+				do{
+					InvalidInput("Day  :",&day,1,31);
+					InvalidInput("Month : ",&month,1,12);
+					if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
+				}while(!(Valid_daymonth(day,month)));
+				InvalidInput("Year  : ",&year,0,INT_MAX);
+				sprintf(input.date,"%02d-%02d-%d",day,month,year);
+			}
+			else{
+				getDate(input.date);
+			}
+			
 			//Make sure user input correctly.
+			system("cls");
 			if(inex == 1) printf("\nIncome.\n");
 			else printf("\nExpense.\n");
 			printf("Name : %s\n",input.name);
 			printf("Type : %d\n",input.type);
 			printf("Amount : %d\n",input.amount);
 			printf("Detail : %s\n",input.detail);
+			printf("Date : %s\n",input.date);
+			
 			InvalidInput("Do you want to save?(Press 1(Yes),0(No)) : ",&menu,0,1);
 		}while(menu == 0);
 		
@@ -65,7 +93,7 @@ int Menu1(){
 			all_amount-=input.amount;
 			strcat(filename,"out");
 		}
-		getDate(filename);
+		strcat(filename,input.date);
 		strcat(filename,".txt");
 		
 		//Move into the file
@@ -96,4 +124,12 @@ void Type_list(int inex , int* type_){
 		}
 		InvalidInput("Press : ",type_,1,7);
 	}
+}
+bool Valid_daymonth(int day_,int month_){
+	int month1[] = {1,3,5,7,8,10,12};
+	int month2[] = {4,6,9,11};
+	if(FindElement(month_,month1,7) && day_ > 31) return false;
+	if(FindElement(month_,month2,4) && day_ > 30) return false;
+	if(month_ == 2 && day_ > 28) return false;
+	return true;
 }

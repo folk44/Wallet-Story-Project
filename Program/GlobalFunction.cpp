@@ -29,13 +29,13 @@ void getDate(char* date){
 	struct tm *local = localtime(&now);
 	
 	//Convert integer to string.
-	sprintf(day,"%02d",local->tm_mday);
-	sprintf(month,"%02d",local->tm_mon+1);
-	sprintf(year,"%d",local->tm_year+1900);
-	
-	strcat(date,day);
-	strcat(date,"-");
-	strcat(date,month);
-	strcat(date,"-");
-	strcat(date,year);
+	sprintf(date,"%02d-%02d-%d",local->tm_mday,local->tm_mon+1,local->tm_year+1900);
+}
+
+bool FindElement(int element,int* arr,int arr_size){
+	for(int i = 0; i < arr_size; i++){
+		if(element == *arr) return true;
+		arr++;
+	}
+	return false;
 }

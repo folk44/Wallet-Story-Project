@@ -10,11 +10,11 @@ Focused=2
 Focused=2
 >>>>>>> 06d5fa8206fcd09c760d1903ea1a49568f706f65
 [Editor_0]
-CursorCol=12
-CursorRow=17
+CursorCol=34
+CursorRow=52
 =======
 Focused=2
-TopLine=8
+TopLine=1
 LeftChar=1
 [Editor_0]
 CursorCol=12
@@ -29,9 +29,9 @@ TopLine=1
 LeftChar=1
 [Editor_2]
 <<<<<<< HEAD
-CursorCol=23
-CursorRow=24
-TopLine=5
+CursorCol=17
+CursorRow=45
+TopLine=37
 LeftChar=1
 [Editor_3]
 CursorCol=21
