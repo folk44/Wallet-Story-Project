@@ -11,7 +11,7 @@ int Menu1(){
 	
 	//Select menu.
 	int menu,inex;
-	double all_amount = 0;
+	float all_amount = 0;
 	do{
 		char filename[25] = "storage/";
 		//Clear screen.
@@ -29,12 +29,13 @@ int Menu1(){
 			break;
 		}
 		
+		int sub_menu,chk_exit = 0;//For check user continue to input.
 		do{
 			system("cls");
+			
 			//Input Income of Expense.
 			inex = InvalidInput("Income(Press 1) or Expense(Press 0) : ",0,1);
 			
-			//Input each list.
 			//Input name.
 			UserInput("Name",input.name);
 			
@@ -52,7 +53,7 @@ int Menu1(){
 			int chk_date;
 			char date[15] = "\0";
 			getDate(date);
-			printf("Do you want to save in current date(%s)?\n",date);
+			printf("Save in current date(%s)?\n",date);
 			chk_date = InvalidInput("Press 1(Yes),0(No) : ",0,1);
 			if(chk_date == 0){
 				
@@ -77,12 +78,18 @@ int Menu1(){
 			else printf("\nExpense.\n");
 			printf("Name : %s\n",input.name);
 			printf("Type : %d\n",input.type);
-			printf("Amount : %d\n",input.amount);
+			printf("Amount : %.2f\n",input.amount);
 			printf("Detail : %s\n",input.detail);
 			printf("Date : %s\n",input.date);
 			
-			menu = InvalidInput("Do you want to save?(Press 1(Yes),0(No)) : ",0,1);
-		}while(menu == 0);
+			sub_menu = InvalidInput("Save?(Press 1(Yes),0(No)) : ",0,1);
+			if(sub_menu == 0 && InvalidInput("Exit this page?(Press 1(Yes),0(No)) : ",0,1) == 1){
+				chk_exit = 1;
+				break;
+			}
+		}while(sub_menu == 0);
+		
+		if(chk_exit == 1) continue;
 		
 		//Set file name for putting input & Adding calculating balance.
 		if(inex == 1){
@@ -99,12 +106,13 @@ int Menu1(){
 		//Move into the file
 		FILE *fp;
 		fp = fopen(filename,"a+");
-		fprintf(fp,"%s %d %d %s\n",input.name,input.type,input.amount,input.detail);
+		fprintf(fp,"%s %d %f %s\n",input.name,input.type,input.amount,input.detail);
 		fclose(fp);
 		printf("Save successfully.\n");
 		
 		delay(1000);
 	}while(menu != 0);
+	
 	return all_amount;
 }
 

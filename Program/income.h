@@ -18,6 +18,6 @@ bool FindElement(int,int*,int);
 
 struct list{
 	int type;
-	double amount;
+	float amount;
 	char name[50], detail[100], date[15];
 };
