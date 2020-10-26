@@ -12,11 +12,12 @@ int Menu1();
 //Go to Menu3
 void Menu3();
 void UserInput(const char*,char*);
-void InvalidInput(const char*, int*, int, int);
+int InvalidInput(const char*, int, int);
 void getDate(char*);
 bool FindElement(int,int*,int);
 
 struct list{
-	int type, amount;
+	int type;
+	double amount;
 	char name[50], detail[100], date[15];
 };

@@ -12,13 +12,15 @@ void UserInput(const char* text,char* input){
 	}
 }
 //To check invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number.
-void InvalidInput(const char* text, int* input, int min_con, int max_con){
+int InvalidInput(const char* text, int min_con, int max_con){
+	int input;
 	do{
 		printf("%s",text);
-		scanf("%d",input);
+		scanf("%d",&input);
 		//Check valid choice.
-		if(*input < min_con || *input > max_con) printf("Invalid choice. Please try again.\n"); //Inform user.
-	}while(*input < min_con || *input > max_con);
+		if(input < min_con || input > max_con) printf("Invalid choice. Please try again.\n"); //Inform user.
+	}while(input < min_con || input > max_con);
+	return input;
 }
 //Get date. All of these parameter are pointer.
 void getDate(char* date){

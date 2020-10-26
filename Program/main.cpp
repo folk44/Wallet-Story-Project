@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <dos.h>
 #include "income.h"
-int balance;
+double balance;
 int main()
 {
 	//Check file "balance.txt". If not, create one and set balance = 0.
@@ -18,7 +18,7 @@ int main()
 	
 	//Open file balance.txt for getting balance.
 	fp = fopen("storage/balance.txt","r");
-	fscanf(fp,"%d",&balance);
+	fscanf(fp,"%f",&balance);
 	fclose(fp);
 	
 	int menu;
@@ -29,7 +29,7 @@ int main()
 		getDate(date);
 		printf("Date : %s\n",date);
 		//Show Balance
-		printf("Balance : %d\n",balance);
+		printf("Balance : %.2f\n",balance);
 		
 		//Display Menu
 		printf("1: \n");
@@ -38,7 +38,7 @@ int main()
 		printf("0: Exit\n");
 		
 		//Check valid menu. If invalid, inform to user.
-		InvalidInput("\nEnter your choice: ",&menu,0,3);	
+		menu = InvalidInput("\nEnter your choice: ",0,3);	
 		
 		//Go to selected menu.
 		switch(menu){
@@ -51,7 +51,7 @@ int main()
 	
 	//Save balance into balance.txt.
 	fp = fopen("storage/balance.txt","w+");
-	fprintf(fp,"%d",balance);
+	fprintf(fp,"%f",balance);
 	fclose(fp);
 	
 	return 0;
