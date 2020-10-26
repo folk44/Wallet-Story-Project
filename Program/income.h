@@ -6,15 +6,18 @@
 #include <time.h>
 #include <ctype.h>
 #include <dos.h>
+#include <limits.h>
 // Go to Menu1
-void Menu1();
+int Menu1();
 //Go to Menu3
 void Menu3();
-//For input many times. Only string. text for constant string not variable, input for input string variable.
 void UserInput(const char*,char*);
-//To check invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number.
-void InvalidInput(const char*, int*, int, int);
+int InvalidInput(const char*, int, int);
+void getDate(char*);
+bool FindElement(int,int*,int);
+
 struct list{
-	int inex, type, amount;
-	char name[50], detail[100];
+	int type;
+	float amount;
+	char name[50], detail[100], date[15];
 };

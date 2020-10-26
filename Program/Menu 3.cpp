@@ -11,7 +11,7 @@ void Menu3()
 	printf("0: Back to Main Menu\n");
 	
 	//Check valid menu. If invalid, inform to user.
-	InvalidInput("\nEnter your choice: ",&menu3,0,2);
+	menu3 = InvalidInput("\nEnter your choice: ",0,2);
 	
 	//Go to selected menu.
 		switch(menu3){
