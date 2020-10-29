@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o Menu1.o GlobalFunction.o "Menu\ 3.o"
-LINKOBJ  = main.o Menu1.o GlobalFunction.o "Menu 3.o"
+OBJ      = main.o Menu1.o GlobalFunction.o "Menu\ 3.o" Menu2.o
+LINKOBJ  = main.o Menu1.o GlobalFunction.o "Menu 3.o" Menu2.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib32" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -lbgi  -lgdi32  -lcomdlg32  -luuid  -loleaut32  -lole32 "C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/libbgi.a" -m32
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -35,3 +35,6 @@ GlobalFunction.o: GlobalFunction.cpp
 
 "Menu\ 3.o": Menu\ 3.cpp
 	$(CPP) -c "Menu 3.cpp" -o "Menu 3.o" $(CXXFLAGS)
+
+Menu2.o: Menu2.cpp
+	$(CPP) -c Menu2.cpp -o Menu2.o $(CXXFLAGS)
