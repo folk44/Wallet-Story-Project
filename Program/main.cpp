@@ -43,7 +43,7 @@ int main()
 		//Go to selected menu.
 		switch(menu){
 			case 1: balance+=Menu1(); break;
-			case 2: printf("Go to menu 2.\n"); break;
+			case 2: Menu2(); break;
 			case 3: Menu3(); break;
 			default: printf("Thank you.");
 		}

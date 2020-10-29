@@ -41,3 +41,11 @@ bool FindElement(int element,int* arr,int arr_size){
 	}
 	return false;
 }
+bool Valid_daymonth(int day_,int month_){
+	int month1[] = {1,3,5,7,8,10,12};
+	int month2[] = {4,6,9,11};
+	if(FindElement(month_,month1,7) && day_ > 31) return false;
+	if(FindElement(month_,month2,4) && day_ > 30) return false;
+	if(month_ == 2 && day_ > 28) return false;
+	return true;
+}
