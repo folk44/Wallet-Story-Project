@@ -38,7 +38,7 @@ int main()
 		printf("0: Exit\n");
 		
 		//Check valid menu. If invalid, inform to user.
-		menu = InvalidInput("\nEnter your choice: ",0,3);	
+		menu = InvalidInput("\nEnter your choice: ",0,3);
 		
 		//Go to selected menu.
 		switch(menu){
