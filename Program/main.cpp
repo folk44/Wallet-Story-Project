@@ -5,14 +5,14 @@
 #include <ctype.h>
 #include <dos.h>
 #include "income.h"
-double balance;
+float balance;
 int main()
 {
 	//Check file "balance.txt". If not, create one and set balance = 0.
 	FILE *fp;
 	if((fp = fopen("storage/balance.txt","r")) == NULL){
 		fp = fopen("storage/balance.txt","w");
-		fprintf(fp,"%d",0);
+		fprintf(fp,"%f",0);
 		fclose(fp);
 	}
 	
@@ -38,7 +38,7 @@ int main()
 		printf("0: Exit\n");
 		
 		//Check valid menu. If invalid, inform to user.
-		menu = InvalidInput("\nEnter your choice: ",0,3);	
+		menu = InvalidInput("\nEnter your choice: ",0,3);
 		
 		//Go to selected menu.
 		switch(menu){

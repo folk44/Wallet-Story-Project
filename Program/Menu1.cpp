@@ -1,18 +1,13 @@
 #include "income.h"
 int Input_Type_list(int);
-int Menu1(){
-	//inex: income or expense.
-	//type: type of item.
-	//amount: amount of money.
-	//name: name of item.
-	//detail: detail of item.
+float Menu1(){
 	struct list input;
 	
 	//Select menu.
 	int menu,inex;
 	float all_amount = 0;
 	do{
-		char filename[25] = "storage/";
+		char filename[30] = "storage/";
 		//Clear screen.
 		system("cls");
 		

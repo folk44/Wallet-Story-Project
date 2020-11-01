@@ -5,8 +5,8 @@ void Menu2(){
 	int menu;
 	
 	do{
-		char file_in[25] = "storage/in";
-		char file_out[25] = "storage/out";
+		char file_in[30] = "storage/in";
+		char file_out[30] = "storage/out";
 		system("cls");
 		
 		//Choose option.
@@ -33,13 +33,16 @@ void Menu2(){
 		year = InvalidInput("Year  : ",0,INT_MAX);
 		sprintf(table.date,"%02d-%02d-%d",day,month,year);
 		
-		//Set income file name following by input date.
-		strcat(file_in,table.date);
-		strcat(file_in,".txt");
+		printf("%s\n",file_in);
+		printf("%s\n",file_out);
 		
 		//Set outcome file name following by input date.
 		strcat(file_out,table.date);
 		strcat(file_out,".txt");
+		
+		//Set income file name following by input date.
+		strcat(file_in,table.date);
+		strcat(file_in,".txt");
 		
 		printf("%s\n",file_in);
 		printf("%s\n",file_out);
