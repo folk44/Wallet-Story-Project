@@ -33,26 +33,47 @@ void Menu2(){
 		year = InvalidInput("Year  : ",0,INT_MAX);
 		sprintf(table.date,"%02d-%02d-%d",day,month,year);
 		
-		printf("%s\n",file_in);
-		printf("%s\n",file_out);
-		
 		//Set outcome file name following by input date.
 		strcat(file_out,table.date);
 		strcat(file_out,".txt");
 		
 		//Set income file name following by input date.
 		strcat(file_in,table.date);
-		strcat(file_in,".txt");
+		strcat(file_in,".txt");		
 		
-		printf("%s\n",file_in);
-		printf("%s\n",file_out);
+		
+		//Display table.
+		system("cls");
+		
+		printf("Date : %s\n",table.date);
+		
+		FILE *fp;
+		//Check income or expense file exist.
+		if((fp = fopen(file_in,"r")) == NULL && (fp = fopen(file_out,"r")) == NULL){
+			printf("\nNo information to display.\n");
+		}
+		
+		//If income file exist.
+		if((fp = fopen(file_in,"r")) != NULL){
+			fp = fopen(file_in,"r");
+			while(!feof(fp)){
+				fscanf(fp,"%s %d %f %s\n",&table.name,&table.type,&table.amount,&table.detail);
+				printf("%s %d %f %s\n",table.name,table.type,table.amount,table.detail);
+			}			
+		}
+		
+		//If expense file exist.
+		if((fp = fopen(file_out,"r")) != NULL){
+			fp = fopen(file_out,"r");
+			while(!feof(fp)){
+				fscanf(fp,"%s %d %f %s\n",&table.name,&table.type,&table.amount,&table.detail);
+				printf("%s %d %f %s\n",table.name,table.type,table.amount,table.detail);
+			}			
+		}
 		
 		delay(5000);
 		
-		/*
-		File *fp
-		if((fp = fopen()))
-		*/
+		
 	}while(menu!=1);
 	
 }
