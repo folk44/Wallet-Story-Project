@@ -1,4 +1,5 @@
 #include "income.h"
+void Showtable(struct list, char* ,char*);
 void Menu2(){
 	
 	struct list table;
@@ -43,42 +44,44 @@ void Menu2(){
 		
 		
 		//Display table.
-		system("cls");
-		
-		printf("Date : %s\n",table.date);
-		
-		FILE *fp;
-		//Check income or expense file exist.
-		if((fp = fopen(file_in,"r")) == NULL && (fp = fopen(file_out,"r")) == NULL){
-			printf("\nNo information to display.\n");
-		}
-		
-		char type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
-		char type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
-		
-		//If income file exist.
-		if((fp = fopen(file_in,"r")) != NULL){
-			fp = fopen(file_in,"r");
-			while(!feof(fp)){
-				
-				char type[8];
-				fscanf(fp,"%s %d %f %s\n",&table.name,&table.type,&table.amount,&table.detail);				
-				printf("%s %s %.2f %s\n",table.name,type_income[table.type - 1],table.amount,table.detail);
-			}			
-		}
-		
-		//If expense file exist.
-		if((fp = fopen(file_out,"r")) != NULL){
-			fp = fopen(file_out,"r");
-			while(!feof(fp)){
-				fscanf(fp,"%s %d %f %s\n",&table.name,&table.type,&table.amount,&table.detail);
-				printf("%s %s -%.2f %s\n",table.name,type_expense[table.type - 1],table.amount,table.detail);
-			}			
-		}
+		Showtable(table,file_in,file_out);
 		
 		delay(5000);
 		
 		
-	}while(menu!=1);
+	}while(menu!=0);
 	
+}
+void Showtable(struct list table_,char* in, char* out){
+	system("cls");
+	
+	printf("Date : %s\n",table_.date);
+	
+	FILE *fp;
+	//Check income or expense file exist.
+	if((fp = fopen(in,"r")) == NULL && (fp = fopen(out,"r")) == NULL){
+		printf("\nNo information to display.\n");
+	}
+	
+	char type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
+	char type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
+	
+	//If income file exist.
+	if((fp = fopen(in,"r")) != NULL){
+		fp = fopen(in,"r");
+		while(!feof(fp)){
+			char type[8];
+			fscanf(fp,"%s %d %f %s\n",&table_.name,&table_.type,&table_.amount,&table_.detail);				
+			printf("%s %s %.2f %s\n",table_.name,type_income[table_.type - 1],table_.amount,table_.detail);
+		}			
+	}
+	
+	//If expense file exist.
+	if((fp = fopen(out,"r")) != NULL){
+		fp = fopen(out,"r");
+		while(!feof(fp)){
+			fscanf(fp,"%s %d %f %s\n",&table_.name,&table_.type,&table_.amount,&table_.detail);
+			printf("%s %s -%.2f %s\n",table_.name,type_expense[table_.type - 1],table_.amount,table_.detail);
+		}
+	}
 }
