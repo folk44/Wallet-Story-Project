@@ -53,12 +53,17 @@ void Menu2(){
 			printf("\nNo information to display.\n");
 		}
 		
+		char type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
+		char type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
+		
 		//If income file exist.
 		if((fp = fopen(file_in,"r")) != NULL){
 			fp = fopen(file_in,"r");
 			while(!feof(fp)){
-				fscanf(fp,"%s %d %f %s\n",&table.name,&table.type,&table.amount,&table.detail);
-				printf("%s %d %f %s\n",table.name,table.type,table.amount,table.detail);
+				
+				char type[8];
+				fscanf(fp,"%s %d %f %s\n",&table.name,&table.type,&table.amount,&table.detail);				
+				printf("%s %s %.2f %s\n",table.name,type_income[table.type - 1],table.amount,table.detail);
 			}			
 		}
 		
@@ -67,7 +72,7 @@ void Menu2(){
 			fp = fopen(file_out,"r");
 			while(!feof(fp)){
 				fscanf(fp,"%s %d %f %s\n",&table.name,&table.type,&table.amount,&table.detail);
-				printf("%s %d %f %s\n",table.name,table.type,table.amount,table.detail);
+				printf("%s %s -%.2f %s\n",table.name,type_expense[table.type - 1],table.amount,table.detail);
 			}			
 		}
 		
