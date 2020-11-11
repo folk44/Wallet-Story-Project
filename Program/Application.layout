@@ -3,18 +3,18 @@ Order=0,1,2,3,4
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-Focused=1
+Focused=2
 =======
 =======
 >>>>>>> 06d5fa8206fcd09c760d1903ea1a49568f706f65
 Focused=2
 >>>>>>> 06d5fa8206fcd09c760d1903ea1a49568f706f65
 [Editor_0]
-CursorCol=27
-CursorRow=54
+CursorCol=17
+CursorRow=53
 =======
 Focused=2
-TopLine=14
+TopLine=30
 LeftChar=1
 [Editor_0]
 CursorCol=12
@@ -23,20 +23,20 @@ CursorRow=5
 TopLine=1
 LeftChar=1
 [Editor_1]
-CursorCol=19
-CursorRow=15
-TopLine=1
+CursorCol=3
+CursorRow=31
+TopLine=3
 LeftChar=1
 [Editor_2]
 <<<<<<< HEAD
-CursorCol=49
-CursorRow=86
-TopLine=78
+CursorCol=18
+CursorRow=136
+TopLine=106
 LeftChar=1
 [Editor_3]
 CursorCol=23
 CursorRow=22
-TopLine=4
+TopLine=17
 LeftChar=1
 [Editor_3]
 CursorCol=1

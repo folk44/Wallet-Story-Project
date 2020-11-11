@@ -1,13 +1,14 @@
 #include "income.h"
 int Input_Type_list(int);
+float Save_inout(struct list, int);
 float Menu1(){
+	FILE *fp;
 	struct list input;
 	
 	//Select menu.
-	int menu,inex;
+	int menu,inout;
 	float all_amount = 0;
 	do{
-		char filename[25] = "storage/";
 		//Clear screen.
 		system("cls");
 		
@@ -28,13 +29,13 @@ float Menu1(){
 			system("cls");
 			
 			//Input Income of Expense.
-			inex = InvalidInput("Income(Press 1) or Expense(Press 0) : ",0,1);
+			inout = InvalidInput("Income(Press 1) or Expense(Press 0) : ",0,1);
 			
 			//Input name.
 			UserInput("Name",input.name);
 			
 			//Input type.(Separate income and expense)
-			input.type = Input_Type_list(inex);
+			input.type = Input_Type_list(inout);
 			
 			//Input amount.
 			printf("Amount : ");
@@ -68,7 +69,7 @@ float Menu1(){
 			
 			//Make sure user input correctly.
 			system("cls");
-			if(inex == 1) printf("\nIncome.\n");
+			if(inout == 1) printf("\nIncome.\n");
 			else printf("\nExpense.\n");
 			printf("Name : %s\n",input.name);
 			printf("Type : %d\n",input.type);
@@ -85,23 +86,8 @@ float Menu1(){
 		
 		if(chk_exit == 1) continue;
 		
-		//Set file name for putting input & Adding calculating balance.
-		if(inex == 1){
-			all_amount+=input.amount;
-			strcat(filename,"in");
-		}
-		else{
-			all_amount-=input.amount;
-			strcat(filename,"out");
-		}
-		strcat(filename,input.date);
-		strcat(filename,".txt");
+		all_amount+=Save_inout(input,inout);
 		
-		//Move into the file
-		FILE *fp;
-		fp = fopen(filename,"a+");
-		fprintf(fp,"%s %d %f %s\n",input.name,input.type,input.amount,input.detail);
-		fclose(fp);
 		printf("Save successfully.\n");
 		
 		delay(1000);
@@ -110,12 +96,12 @@ float Menu1(){
 	return all_amount;
 }
 
-int Input_Type_list(int inex){
+int Input_Type_list(int inout){
 	int type_;
 	char list_type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
 	char list_type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
 	printf("Type: \n");
-	if(inex == 1){
+	if(inout == 1){
 		for(int i = 0; i < 8; i++){
 			printf("%d. %s\n",i+1,list_type_income[i]);
 		}
@@ -128,4 +114,31 @@ int Input_Type_list(int inex){
 		type_ = InvalidInput("Press : ",1,7);
 	}
 	return type_;
+}
+
+float Save_inout(struct list input, int inout){
+	FILE *fp;
+	float amount = 0;
+	char filename[25] = "storage/";	
+	
+	strcat(filename,input.date);
+	
+	//Check income or expense.
+	if(inout == 1){
+		amount+=input.amount;
+		strcat(filename,"in");
+	}
+	else{
+		amount-=input.amount;
+		strcat(filename,"out");
+	}
+	
+	strcat(filename,".txt");
+	
+	//Save into the income or expense file.
+	fp = fopen(filename,"a+");
+	fprintf(fp,"%s %d %f %s\n",input.name,input.type,input.amount,input.detail);
+	fclose(fp);
+	
+	return amount;
 }
