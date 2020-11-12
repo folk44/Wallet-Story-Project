@@ -23,15 +23,15 @@ CursorRow=5
 TopLine=1
 LeftChar=1
 [Editor_1]
-CursorCol=3
-CursorRow=31
-TopLine=3
+CursorCol=16
+CursorRow=28
+TopLine=4
 LeftChar=1
 [Editor_2]
 <<<<<<< HEAD
-CursorCol=18
-CursorRow=136
-TopLine=106
+CursorCol=16
+CursorRow=164
+TopLine=143
 LeftChar=1
 [Editor_3]
 CursorCol=23

@@ -8,7 +8,7 @@
 #include <dos.h>
 #include <limits.h>
 // Go to Menu1
-float Menu1();
+void Menu1();
 //Go to Menu2
 //void Menu2();
 //Go to Menu3
@@ -25,7 +25,7 @@ struct list{
 	//amount: amount of money.
 	//name: name of item.
 	//detail: detail of item.
-	int type;
+	int type,inout;
 	float amount;
 	char name[50], detail[100], date[15];
 };
