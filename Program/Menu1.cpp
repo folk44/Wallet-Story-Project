@@ -10,6 +10,8 @@ void Save_result(struct list);
 void Menu1(){
 	FILE *fp;
 	struct list input;
+	char type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
+	char type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
 	
 	//Select menu.
 	int menu;
@@ -78,7 +80,8 @@ void Menu1(){
 			if(input.inout == 1) printf("\nIncome.\n");
 			else printf("\nExpense.\n");
 			printf("Name : %s\n",input.name);
-			printf("Type : %d\n",input.type);
+			if(input.inout == 1) printf("Type : %s\n",type_income[input.type]);
+			else printf("Type : %s\n",type_expense[input.type]);
 			printf("Amount : %.2f\n",input.amount);
 			printf("Detail : %s\n",input.detail);
 			printf("Date : %s\n",input.date);
@@ -131,7 +134,7 @@ int Input_Type_list(int inout){
 		}
 		type_ = InvalidInput("Press : ",1,7);
 	}
-	return type_;
+	return type_-1;
 }
 
 void Save_inout(struct list input){
