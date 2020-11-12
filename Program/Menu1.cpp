@@ -5,6 +5,8 @@ int Input_Type_list(int);
 void Save_inout(struct list);
 //Save to mm-yytotal.txt and yytotal.txt for save income and expense.
 void Save_total(struct list);
+//Save to mm-yy.txt and yytotal.txt for save income and expense.
+void Save_result(struct list);
 void Menu1(){
 	FILE *fp;
 	struct list input;
@@ -92,6 +94,7 @@ void Menu1(){
 		
 		Save_inout(input);
 		Save_total(input);
+		if(input.inout == 0) Save_result(input);
 		
 		//Read file balance.txt
 		fp = fopen("storage/balance.txt","r");
@@ -169,13 +172,15 @@ void Save_total(struct list input){
 	else fprintf(fp,"%f %f",in,out+input.amount);
 	fclose(fp);
 	
-	//yytotal
-	strcpy(filename,"storage/");
-	for(int i = 6; i < strlen(input.date); i++) strncat(filename,&input.date[i],1);
 	
+	//Reset income and expense for save to newfile
+	in = 0; out = 0;
+	strcpy(filename,"storage/");
+	
+	//yytotal.txt
+	for(int i = 6; i < strlen(input.date); i++) strncat(filename,&input.date[i],1);
 	strcat(filename,"total.txt");
 	
-	in = 0; out = 0;
 	if((fp = fopen(filename,"r")) != NULL){
 		fscanf(fp,"%f %f",&in,&out);
 	}
@@ -185,4 +190,52 @@ void Save_total(struct list input){
 	else fprintf(fp,"%f %f",in,out+input.amount);
 	fclose(fp);
 	
+}
+
+void Save_result(struct list input){
+	FILE *fp;
+	//Amount of each type(First set to zero).
+	float amount[7] = {0};
+	char filename[25] = "storage/";
+	
+	//mm-yyresult.txt
+	for(int i = 3; i < strlen(input.date); i++) strncat(filename,&input.date[i],1);
+	strcat(filename,"result.txt");
+	
+	//If file exist, get amount of each type.
+	if((fp = fopen(filename,"r")) != NULL){
+		for(int i = 0; i < 7; i++) fscanf(fp,"%f ",&amount[i]);
+	}
+	fclose(fp);
+	
+	//Save to mm-yyresult.txt
+	fp = fopen(filename,"w");
+	for(int i = 0; i < 7; i++){
+		if(i == input.type) fprintf(fp,"%f ",amount[i]+input.amount);
+		else fprintf(fp,"%f ",amount[i]);
+	}
+	fclose(fp);
+	
+	
+	//Reset for save to new file.
+	strcpy(filename,"storage/");
+	for(int i = 0; i < 7; i++) amount[i] = 0;
+	
+	//mm-yytotal.txt
+	for(int i = 6; i < strlen(input.date); i++) strncat(filename,&input.date[i],1);
+	strcat(filename,"result.txt");
+	
+	//If file exist, get amount of each type.
+	if((fp = fopen(filename,"r")) != NULL){
+		for(int i = 0; i < 7; i++) fscanf(fp,"%f ",&amount[i]);
+	}
+	fclose(fp);
+	
+	//Save to mm-yyresult.txt
+	fp = fopen(filename,"w");
+	for(int i = 0; i < 7; i++){
+		if(i == input.type) fprintf(fp,"%f ",amount[i]+input.amount);
+		else fprintf(fp,"%f ",amount[i]);
+	}
+	fclose(fp);
 }
