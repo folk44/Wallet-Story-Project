@@ -15,11 +15,11 @@ Focused=2
 >>>>>>> 06d5fa8206fcd09c760d1903ea1a49568f706f65
 [Editor_0]
 <<<<<<< HEAD
-CursorCol=3
-CursorRow=42
+CursorCol=15
+CursorRow=46
 =======
 Focused=2
-TopLine=5
+TopLine=2
 =======
 CursorCol=17
 CursorRow=53
@@ -38,13 +38,13 @@ LeftChar=1
 <<<<<<< HEAD
 CursorCol=1
 CursorRow=13
-TopLine=1
+TopLine=3
 LeftChar=1
 [Editor_2]
 <<<<<<< HEAD
-CursorCol=31
-CursorRow=116
-TopLine=96
+CursorCol=20
+CursorRow=24
+TopLine=4
 LeftChar=1
 [Editor_3]
 CursorCol=9
@@ -91,7 +91,7 @@ CursorRow=14
 TopLine=1
 LeftChar=1
 [Editor_5]
-CursorCol=37
-CursorRow=47
-TopLine=1
+CursorCol=5
+CursorRow=88
+TopLine=80
 LeftChar=1

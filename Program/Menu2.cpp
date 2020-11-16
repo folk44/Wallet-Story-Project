@@ -63,9 +63,10 @@ void Menu2(){
 }
 void Showtable(struct list table_,char* in, char* out){
 	FILE *fp;
+	float in_amount = 0, out_amount = 0;
 	system("cls");
 	
-	printf("Date : %s\n",table_.date);
+	printf("\nDate : %s\n",table_.date);
 	printf("\n%-20s %-10s %-10s %-50s\n","List","Income","Expense","Detail");
 	
 	//Check income or expense file exist.
@@ -79,9 +80,12 @@ void Showtable(struct list table_,char* in, char* out){
 	//If income file exist.
 	if((fp = fopen(in,"r")) != NULL){
 		while(!feof(fp)){
-			char text[20] = "[";			
+			char text[20] = "[";
+			//Get information			
 			fscanf(fp,"%s %d %f %s\n",&table_.name,&table_.type,&table_.amount,&table_.detail);
+			in_amount+=table_.amount;
 			
+			//Set text.
 			strcat(text,type_income[table_.type]);
 			strcat(text,"]");
 			strcat(text,table_.name);
@@ -96,6 +100,7 @@ void Showtable(struct list table_,char* in, char* out){
 		while(!feof(fp)){
 			char text[20] = "[";			
 			fscanf(fp,"%s %d %f %s\n",&table_.name,&table_.type,&table_.amount,&table_.detail);
+			out_amount+=table_.amount;
 			
 			strcat(text,type_expense[table_.type]);
 			strcat(text,"]");
@@ -105,4 +110,5 @@ void Showtable(struct list table_,char* in, char* out){
 		}
 		fclose(fp);
 	}
+	printf("\n%-20s %-10.2f %-10.2f\n","Total",in_amount,out_amount);
 }
