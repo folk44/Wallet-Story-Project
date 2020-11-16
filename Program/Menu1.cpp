@@ -1,13 +1,22 @@
 #include "income.h"
+//For input type according to income or expense.
 int Input_Type_list(int);
-float Menu1(){
+//Save to dd-mm-yy(in or out).txt
+void Save_inout(struct list);
+//Save to mm-yytotal.txt and yytotal.txt for save income and expense.
+void Save_total(struct list);
+//Save to mm-yy.txt and yytotal.txt for save income and expense.
+void Save_result(struct list);
+void Menu1(){
+	FILE *fp;
 	struct list input;
+	char type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
+	char type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
 	
 	//Select menu.
-	int menu,inex;
-	float all_amount = 0;
+	int menu;
+	float balance;//all_amount for save amount while do in funciotn, balance for save
 	do{
-		char filename[30] = "storage/";
 		//Clear screen.
 		system("cls");
 		
@@ -28,13 +37,13 @@ float Menu1(){
 			system("cls");
 			
 			//Input Income of Expense.
-			inex = InvalidInput("Income(Press 1) or Expense(Press 0) : ",0,1);
+			input.inout = InvalidInput("Income(Press 1) or Expense(Press 0) : ",0,1);
 			
 			//Input name.
 			UserInput("Name",input.name);
 			
 			//Input type.(Separate income and expense)
-			input.type = Input_Type_list(inex);
+			input.type = Input_Type_list(input.inout);
 			
 			//Input amount.
 			printf("Amount : ");
@@ -68,10 +77,11 @@ float Menu1(){
 			
 			//Make sure user input correctly.
 			system("cls");
-			if(inex == 1) printf("\nIncome.\n");
+			if(input.inout == 1) printf("\nIncome.\n");
 			else printf("\nExpense.\n");
 			printf("Name : %s\n",input.name);
-			printf("Type : %d\n",input.type);
+			if(input.inout == 1) printf("Type : %s\n",type_income[input.type]);
+			else printf("Type : %s\n",type_expense[input.type]);
 			printf("Amount : %.2f\n",input.amount);
 			printf("Detail : %s\n",input.detail);
 			printf("Date : %s\n",input.date);
@@ -85,37 +95,34 @@ float Menu1(){
 		
 		if(chk_exit == 1) continue;
 		
-		//Set file name for putting input & Adding calculating balance.
-		if(inex == 1){
-			all_amount+=input.amount;
-			strcat(filename,"in");
-		}
-		else{
-			all_amount-=input.amount;
-			strcat(filename,"out");
-		}
-		strcat(filename,input.date);
-		strcat(filename,".txt");
+		Save_inout(input);
+		Save_total(input);
+		if(input.inout == 0) Save_result(input);
 		
-		//Move into the file
-		FILE *fp;
-		fp = fopen(filename,"a+");
-		fprintf(fp,"%s %d %f %s\n",input.name,input.type,input.amount,input.detail);
+		//Read file balance.txt
+		fp = fopen("storage/balance.txt","r");
+		fscanf(fp,"%f",&balance);
 		fclose(fp);
+		
+		//Save balance into balance.txt.
+		fp = fopen("storage/balance.txt","w+");
+		if(input.inout == 1) fprintf(fp,"%f",balance+input.amount);
+		else fprintf(fp,"%f",balance-input.amount);
+		
+		fclose(fp);
+		
 		printf("Save successfully.\n");
 		
 		delay(1000);
 	}while(menu != 0);
-	
-	return all_amount;
 }
 
-int Input_Type_list(int inex){
+int Input_Type_list(int inout){
 	int type_;
 	char list_type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
 	char list_type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
 	printf("Type: \n");
-	if(inex == 1){
+	if(inout == 1){
 		for(int i = 0; i < 8; i++){
 			printf("%d. %s\n",i+1,list_type_income[i]);
 		}
@@ -127,5 +134,111 @@ int Input_Type_list(int inex){
 		}
 		type_ = InvalidInput("Press : ",1,7);
 	}
-	return type_;
+	return type_-1;
+}
+
+void Save_inout(struct list input){
+	FILE *fp;
+	char filename[25] = "storage/";	
+	
+	strcat(filename,input.date);
+	
+	//Check income or expense.
+	if(input.inout == 1) strcat(filename,"in");
+	else strcat(filename,"out");
+	
+	strcat(filename,".txt");
+	
+	//Save into the income or expense file.
+	fp = fopen(filename,"a+");
+	fprintf(fp,"%s %d %f %s\n",input.name,input.type,input.amount,input.detail);
+	fclose(fp);
+}
+
+void Save_total(struct list input){
+	FILE *fp;
+	//Income and expense.
+	float in = 0,out = 0;
+	char filename[25] = "storage/";
+	
+	//mm-yytotal.txt
+	for(int i = 3; i < strlen(input.date); i++) strncat(filename,&input.date[i],1);
+	
+	strcat(filename,"total.txt");
+	
+	if((fp = fopen(filename,"r")) != NULL){
+		fscanf(fp,"%f %f",&in,&out);
+	}
+	
+	fp = fopen(filename,"w");
+	if(input.inout == 1) fprintf(fp,"%f %f",in+input.amount,out);
+	else fprintf(fp,"%f %f",in,out+input.amount);
+	fclose(fp);
+	
+	
+	//Reset income and expense for save to newfile
+	in = 0; out = 0;
+	strcpy(filename,"storage/");
+	
+	//yytotal.txt
+	for(int i = 6; i < strlen(input.date); i++) strncat(filename,&input.date[i],1);
+	strcat(filename,"total.txt");
+	
+	if((fp = fopen(filename,"r")) != NULL){
+		fscanf(fp,"%f %f",&in,&out);
+	}
+	
+	fp = fopen(filename,"w");
+	if(input.inout == 1) fprintf(fp,"%f %f",in+input.amount,out);
+	else fprintf(fp,"%f %f",in,out+input.amount);
+	fclose(fp);
+	
+}
+
+void Save_result(struct list input){
+	FILE *fp;
+	//Amount of each type(First set to zero).
+	float amount[7] = {0};
+	char filename[25] = "storage/";
+	
+	//mm-yyresult.txt
+	for(int i = 3; i < strlen(input.date); i++) strncat(filename,&input.date[i],1);
+	strcat(filename,"result.txt");
+	
+	//If file exist, get amount of each type.
+	if((fp = fopen(filename,"r")) != NULL){
+		for(int i = 0; i < 7; i++) fscanf(fp,"%f ",&amount[i]);
+	}
+	fclose(fp);
+	
+	//Save to mm-yyresult.txt
+	fp = fopen(filename,"w");
+	for(int i = 0; i < 7; i++){
+		if(i == input.type) fprintf(fp,"%f ",amount[i]+input.amount);
+		else fprintf(fp,"%f ",amount[i]);
+	}
+	fclose(fp);
+	
+	
+	//Reset for save to new file.
+	strcpy(filename,"storage/");
+	for(int i = 0; i < 7; i++) amount[i] = 0;
+	
+	//mm-yytotal.txt
+	for(int i = 6; i < strlen(input.date); i++) strncat(filename,&input.date[i],1);
+	strcat(filename,"result.txt");
+	
+	//If file exist, get amount of each type.
+	if((fp = fopen(filename,"r")) != NULL){
+		for(int i = 0; i < 7; i++) fscanf(fp,"%f ",&amount[i]);
+	}
+	fclose(fp);
+	
+	//Save to mm-yyresult.txt
+	fp = fopen(filename,"w");
+	for(int i = 0; i < 7; i++){
+		if(i == input.type) fprintf(fp,"%f ",amount[i]+input.amount);
+		else fprintf(fp,"%f ",amount[i]);
+	}
+	fclose(fp);
 }

@@ -16,15 +16,14 @@ int main()
 		fclose(fp);
 	}
 	
-	//Open file balance.txt for getting balance.
-	fp = fopen("storage/balance.txt","r");
-	fscanf(fp,"%f",&balance);
-	fclose(fp);
-	
 	int menu;
 	char date[15] = {"\0"};
 	do{
 		system("cls");
+		//Open file balance.txt for getting balance.
+		fp = fopen("storage/balance.txt","r");
+		fscanf(fp,"%f",&balance);
+		fclose(fp);
 		//Show date.
 		getDate(date);
 		printf("Date : %s\n",date);
@@ -42,17 +41,12 @@ int main()
 		
 		//Go to selected menu.
 		switch(menu){
-			case 1: balance+=Menu1(); break;
+			case 1: Menu1(); break;
 			case 2: Menu2(); break;
 			case 3: Menu3(); break;
 			default: printf("Thank you.");
 		}
 	}while(menu != 0);
-	
-	//Save balance into balance.txt.
-	fp = fopen("storage/balance.txt","w+");
-	fprintf(fp,"%f",balance);
-	fclose(fp);
 	
 	return 0;
 }
