@@ -26,16 +26,16 @@ void Menu2(){
 		int sub_menu;
 		do{
 			//Setting file name.
-			char file_in[30] = "storage/in";
-			char file_out[30] = "storage/out";
+			char file_in[30] = "storage/";
+			char file_out[30] = "storage/";
 			
 			//Set outcome file name following by input date.
 			strcat(file_out,table.date);
-			strcat(file_out,".txt");
+			strcat(file_out,"out.txt");
 			
 			//Set income file name following by input date.
 			strcat(file_in,table.date);
-			strcat(file_in,".txt");	
+			strcat(file_in,"in.txt");	
 			
 			//Display table.
 			Showtable(table,file_in,file_out);
@@ -62,11 +62,12 @@ void Menu2(){
 	
 }
 void Showtable(struct list table_,char* in, char* out){
+	FILE *fp;
 	system("cls");
 	
 	printf("Date : %s\n",table_.date);
+	printf("\n%-20s %-10s %-10s %-50s\n","List","Income","Expense","Detail");
 	
-	FILE *fp;
 	//Check income or expense file exist.
 	if((fp = fopen(in,"r")) == NULL && (fp = fopen(out,"r")) == NULL){
 		printf("\nNo information to display.\n");
@@ -77,20 +78,31 @@ void Showtable(struct list table_,char* in, char* out){
 	
 	//If income file exist.
 	if((fp = fopen(in,"r")) != NULL){
-		fp = fopen(in,"r");
 		while(!feof(fp)){
-			char type[8];
-			fscanf(fp,"%s %d %f %s\n",&table_.name,&table_.type,&table_.amount,&table_.detail);				
-			printf("%s %s %.2f %s\n",table_.name,type_income[table_.type - 1],table_.amount,table_.detail);
-		}			
+			char text[20] = "[";			
+			fscanf(fp,"%s %d %f %s\n",&table_.name,&table_.type,&table_.amount,&table_.detail);
+			
+			strcat(text,type_income[table_.type]);
+			strcat(text,"]");
+			strcat(text,table_.name);
+				
+			printf("%-20s %-10.2f %-10s %-50s\n",text,table_.amount,"-",table_.detail);
+		}
+		fclose(fp);			
 	}
 	
 	//If expense file exist.
 	if((fp = fopen(out,"r")) != NULL){
-		fp = fopen(out,"r");
 		while(!feof(fp)){
+			char text[20] = "[";			
 			fscanf(fp,"%s %d %f %s\n",&table_.name,&table_.type,&table_.amount,&table_.detail);
-			printf("%s %s -%.2f %s\n",table_.name,type_expense[table_.type - 1],table_.amount,table_.detail);
+			
+			strcat(text,type_expense[table_.type]);
+			strcat(text,"]");
+			strcat(text,table_.name);
+			
+			printf("%-20s %-10s %-10.2f %-50s\n",text,"-",table_.amount,table_.detail);
 		}
+		fclose(fp);
 	}
 }
