@@ -33,7 +33,7 @@ int main()
 		//Display Menu
 		printf("1: \n");
 		printf("2: \n");
-		printf("3: \n");
+		printf("3: Summary\n");
 		printf("0: Exit\n");
 		
 		//Check valid menu. If invalid, inform to user.

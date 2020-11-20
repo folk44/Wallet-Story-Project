@@ -40,7 +40,7 @@ void MonthlySum()
 			if(Month < 0 || Month > 12) printf("Invalid Month. Please try again.\n"); //Inform user.
 		}while(Month < 0 || Month > 12);
 	if(Month==0){return;}
-	printf("Input Year (back to MENU press 0): ");
+	printf("Input Year  (back to MENU press 0): ");
 	scanf("%d",&Year);
 	if(Year==0){return;}
 	//change to mm-yyyy
@@ -91,7 +91,7 @@ void MonthlySum()
             strcpy(Type[j-1],temps);
 		}}
 	for(i=0;i<7;i++)
-		printf("%d. [%-15s] %-10.2f \n",i+1,Type[i],Cost[i]);
+		printf("%d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
 	printf("\n");
 	system("pause");
 	
@@ -155,14 +155,14 @@ void AnnualSum()
             strcpy(Type[j-1],temps);
 		}
 	for(i=0;i<7;i++)
-		printf("%d. [%-15s] %-10.2f \n",i+1,Type[i],Cost[i]);
+		printf("%d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
 		
 	//Show Graph
-	if(graph()==1);
-	{
-		printf("\n");
-		system("pause");
-	}
+	graph();
+	
+	printf("\n");
+	system("pause");
+	
 	
 	
 }
