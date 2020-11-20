@@ -157,6 +157,8 @@ void AnnualSum()
 	for(i=0;i<7;i++)
 		printf("%d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
 		
+	
+	
 	//Show Graph
 	graph();
 	
