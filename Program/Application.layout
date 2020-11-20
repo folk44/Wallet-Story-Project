@@ -3,7 +3,7 @@ Order=0,1,2,3,4
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-Focused=4
+Focused=-1
 =======
 =======
 >>>>>>> 06d5fa8206fcd09c760d1903ea1a49568f706f65
@@ -24,14 +24,14 @@ TopLine=1
 LeftChar=1
 [Editor_1]
 CursorCol=1
-CursorRow=25
-TopLine=7
+CursorRow=1
+TopLine=1
 LeftChar=1
 [Editor_2]
 <<<<<<< HEAD
 CursorCol=20
 CursorRow=117
-TopLine=19
+TopLine=1
 LeftChar=1
 [Editor_3]
 CursorCol=23
@@ -58,8 +58,8 @@ LeftChar=1
 [Editor_4]
 CursorCol=2
 >>>>>>> main
-CursorRow=152
-TopLine=1
+CursorRow=151
+TopLine=132
 LeftChar=1
 [Editor_5]
 CursorCol=14

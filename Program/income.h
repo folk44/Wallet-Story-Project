@@ -1,6 +1,5 @@
 #include <graphics.h>
 #include <stdio.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -22,6 +21,7 @@ bool Valid_daymonth(int,int);
 void Menu3();
 void MonthlySum();
 void AnnualSum();
+int graph();
 
 struct list{
 	//inex: income or expense.

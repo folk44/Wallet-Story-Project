@@ -23,6 +23,7 @@ void Menu3()
 	}while(menu3 != 0);
 	
 }
+
 void MonthlySum()
 {
 	int i,j,Month,Year;
@@ -30,12 +31,18 @@ void MonthlySum()
 	char Filename[20],date[8];
 	FILE *fp;
 	
+	system("cls");
 	//Input Month Year
 	do{
-	printf("Input Month/Year (back to MENU press 0/0): ");
-	scanf("%d/%d",&Month,&Year);
-	if(Month==0&&Year==0){
-	return;}
+		do{
+			printf("Input Month (back to MENU press 0): ");
+			scanf("%d",&Month);
+			if(Month < 0 || Month > 12) printf("Invalid Month. Please try again.\n"); //Inform user.
+		}while(Month < 0 || Month > 12);
+	if(Month==0){return;}
+	printf("Input Year (back to MENU press 0): ");
+	scanf("%d",&Year);
+	if(Year==0){return;}
 	//change to mm-yyyy
 	sprintf(date,"%02d-%d",Month,Year);
 	
@@ -43,6 +50,7 @@ void MonthlySum()
 	strcat(strcat(strcpy(Filename,"storage/"),date),"total.txt");
 	if((fp = fopen(Filename,"r"))==NULL)
 	{
+		system("cls");
 		printf("Not Found!!\n");
 		printf("Please input again.\n");
 		i=0;
@@ -51,27 +59,27 @@ void MonthlySum()
 	}while(i==0);
 	
 	//To show income,expense
-	fscanf(fp,"%d %d",&in,&out);
-    printf("Income Total  : %.2f Baht \n",in);
+	fscanf(fp,"%f %f",&in,&out);
+    printf("\nIncome Total  : %.2f Baht \n",in);
     printf("Expense Total : %.2f Baht \n",out);
     fclose(fp);
     
     //To show Ranking
     float Cost[7],tempn;
-    char Type[7][20],temps[20];
+    char Type[7][20]={"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"},temps[20];
     strcat(strcat(strcpy(Filename,"storage/"),date),"result.txt");
     fp = fopen(Filename,"r");
-	printf("Ranking of Expense \n");
+	printf("\nRanking of Expense \n");
 	i=0;
 	while(!feof(fp))
     {
-		fscanf(fp,"%s %d",Type[i],&Cost[i]);
+		fscanf(fp,"%f",&Cost[i]);
         i++;
     }
     fclose(fp);
     for(i=1;i<7;i++)
-    {	j=i;
-    	for(;j-1==0;j--)
+    {	
+    	for(j=i;j-1>=0;j--)
 		if(Cost[j]>Cost[j-1])
 		{
 			tempn=Cost[j];
@@ -83,8 +91,8 @@ void MonthlySum()
             strcpy(Type[j-1],temps);
 		}}
 	for(i=0;i<7;i++)
-		printf("%d. [%-10s] %-10d \n",i+1,Type[i],Cost[i]);
-	printf("press any key to back to Menu");
+		printf("%d. [%-15s] %-10.2f \n",i+1,Type[i],Cost[i]);
+	printf("\n");
 	system("pause");
 	
 }
@@ -96,6 +104,7 @@ void AnnualSum()
 	char Filename[20],date[8];
 	FILE *fp;
 	
+	system("cls");
 	//Input Year
 	do{
 	printf("Input Year (back to MENU press 0): ");
@@ -106,6 +115,7 @@ void AnnualSum()
 	strcat(strcat(strcpy(Filename,"storage/"),date),"total.txt");
 	if((fp = fopen(Filename,"r"))==NULL)
 	{
+		system("cls");
 		printf("Not Found!!\n");
 		printf("Please input again.\n");
 		i=0;
@@ -114,26 +124,26 @@ void AnnualSum()
 	}while(i==0);
 	
 	//To show income,expense
-	fscanf(fp,"%d %d",&in,&out);
-    printf("Income Total  : %.2f Baht \n",in);
+	fscanf(fp,"%f %f",&in,&out);
+    printf("\nIncome Total  : %.2f Baht \n",in);
     printf("Expense Total : %.2f Baht \n",out);
     fclose(fp);
     
     //To show Ranking
     float Cost[7],tempn;
-    char Type[7][20],temps[20];
+    char Type[7][20]={"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"},temps[20];
     strcat(strcat(strcpy(Filename,"storage/"),date),"result.txt");
     fp = fopen(Filename,"r");
-	printf("Ranking of Expense \n");
+	printf("\nRanking of Expense \n");
 	i=0;
 	while(!feof(fp))
     {
-		fscanf(fp,"%s %d",Type[i],&Cost[i]);
+		fscanf(fp,"%f",&Cost[i]);
         i++;
     }
     fclose(fp);
     for(i=1;i<7;i++)
-    	for(j=i;j-1==0;j--)
+    	for(j=i;j-1>=0;j--)
 		if(Cost[j]>Cost[j-1])
 		{
 			tempn=Cost[j];
@@ -145,12 +155,14 @@ void AnnualSum()
             strcpy(Type[j-1],temps);
 		}
 	for(i=0;i<7;i++)
-		printf("%d. [%-10s] %-10d \n",i+1,Type[i],Cost[i]);
+		printf("%d. [%-15s] %-10.2f \n",i+1,Type[i],Cost[i]);
 		
 	//Show Graph
+	if(graph()==1);
+	{
+		printf("\n");
+		system("pause");
+	}
 	
 	
-	printf("press any key to back to Menu");
-	system("pause");
-	return;
 }
