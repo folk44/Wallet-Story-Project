@@ -28,7 +28,7 @@ void MonthlySum()
 {
 	int i,j,Month,Year;
 	float in,out;
-	char Filename[20],date[8];
+	char Filename[30],date[8];
 	FILE *fp;
 	
 	system("cls");
@@ -101,7 +101,7 @@ void AnnualSum()
 {
 	int Year,i=0,j;
 	float in,out;
-	char Filename[20],date[8];
+	char Filename[30],date[8];
 	FILE *fp;
 	
 	system("cls");
@@ -158,9 +158,8 @@ void AnnualSum()
 		printf("%d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
 		
 	
-	
 	//Show Graph
-	graph();
+	graph(Year);
 	
 	printf("\n");
 	system("pause");
