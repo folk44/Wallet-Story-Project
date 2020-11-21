@@ -21,7 +21,8 @@ bool Valid_daymonth(int,int);
 void Menu3();
 void MonthlySum();
 void AnnualSum();
-int graph(int);
+int graph(int,int);
+void plotdata (float,float*);
 
 struct list{
 	//inex: income or expense.
