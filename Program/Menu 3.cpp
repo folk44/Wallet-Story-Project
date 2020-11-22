@@ -25,6 +25,7 @@ void Menu3()
 	
 }
 
+//Monthly Summary Function
 void MonthlySum()
 {
 	int i,j,Month,Year;
@@ -46,13 +47,14 @@ void MonthlySum()
 	printf("Input Year  (back to MENU press 0): ");
 	scanf("%d",&Year);
 	if(Year==0){printf("\nBack to Menu \n");return;}
-	//change to mm-yyyy
+	//change input to mm-yyyy
 	sprintf(date,"%02d-%d",Month,Year);
 	
-	//openfile
+	//openfile mouth-yeartotal.txt
 	strcat(strcat(strcpy(Filename,"storage/"),date),"total.txt");
 	if((fp = fopen(Filename,"r"))==NULL)
 	{
+		//clear screen, show title and input again
 		system("cls");
 		printf("\t  Monthly Summary\n\n");
 		printf("Not Found!!\n");
@@ -61,10 +63,11 @@ void MonthlySum()
 	}
 	else i=1;
 	}while(i==0);
+	
 	system("cls");
-	//Header
+	//show Title 
 	printf("   Monthly Summary [%s %d]\n",month[Month-1],Year);
-	//To show income,expense
+	//read and show income,expense
 	fscanf(fp,"%f %f",&in,&out);
     printf("\nIncome Total  : %.2f Baht \n",in);
     printf("Expense Total : %.2f Baht \n",out);
@@ -73,9 +76,12 @@ void MonthlySum()
     //To show Ranking
     float Cost[7],tempn;
     char Type[7][20]={"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"},temps[20];
-    strcat(strcat(strcpy(Filename,"storage/"),date),"result.txt");
-    fp = fopen(Filename,"r");
+    //open file month-yearresult.txt
+	strcat(strcat(strcpy(Filename,"storage/"),date),"result.txt");
+	fp = fopen(Filename,"r");
+	//title
 	printf("\nRanking of Expense \n");
+	//read and get in Cost[]
 	i=0;
 	while(!feof(fp))
     {
@@ -83,6 +89,7 @@ void MonthlySum()
         i++;
     }
     fclose(fp);
+    //sorting Cost[] (Insertion Sort) 
     for(i=1;i<7;i++)
     {	
     	for(j=i;j-1>=0;j--)
@@ -96,13 +103,14 @@ void MonthlySum()
             strcpy(Type[j],Type[j-1]);
             strcpy(Type[j-1],temps);
 		}}
+	//Show ranking
 	for(i=0;i<7;i++)
 		printf("%d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
 	printf("\n");
-	//Show Graph
+	//show Alternative
 	printf("\n1: Show another month \n");
 	printf("0: Back to Menu\n");
-
+	//input choice
 	int menu = InvalidInput("\nEnter your choice: ",0,1);
 	switch(menu){
 			case 1: MonthlySum(); break;
@@ -111,6 +119,7 @@ void MonthlySum()
 			}	
 }
 
+//Annual Summary Function
 void AnnualSum()
 {
 	int Year,i=0,j;
@@ -119,18 +128,19 @@ void AnnualSum()
 	FILE *fp;
 	
 	system("cls");
-	
+	//show Title
 	printf("\t  Annual Summary\n\n");
 	//Input Year
 	do{
 	printf("Input Year (back to MENU press 0): ");
 	scanf("%d",&Year);
 	if(Year==0) return;
-	
+	//open yeartotle.txt
 	sprintf(date,"%d",Year);
 	strcat(strcat(strcpy(Filename,"storage/"),date),"total.txt");
 	if((fp = fopen(Filename,"r"))==NULL)
 	{
+		//clear screen, show title and input again
 		system("cls");
 		printf("\t  Annual Summary\n\n");
 		printf("Not Found!!\n");
@@ -139,9 +149,11 @@ void AnnualSum()
 	}
 	else i=1;
 	}while(i==0);
+	
 	int menugraph;
 	do{
 		system("cls");
+		//title
 		printf("     Annual Summary [%d]\n",Year);
 		//To show income,expense
 		fscanf(fp,"%f %f",&in,&out);
@@ -152,9 +164,12 @@ void AnnualSum()
 	    //To show Ranking
 	    float Cost[7],tempn;
 	    char Type[7][20]={"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"},temps[20];
-	    strcat(strcat(strcpy(Filename,"storage/"),date),"result.txt");
+	    //Open yearresult.txt
+		strcat(strcat(strcpy(Filename,"storage/"),date),"result.txt");
 	    fp = fopen(Filename,"r");
+		//title
 		printf("\nRanking of Expense \n");
+		//read and get in Cost[]
 		i=0;
 		while(!feof(fp))
 	    {
@@ -162,6 +177,7 @@ void AnnualSum()
 	        i++;
 	    }
 	    fclose(fp);
+	    //sorting Cost[] (Insertion Sort)
 	    for(i=1;i<7;i++)
 	    	for(j=i;j-1>=0;j--)
 			if(Cost[j]>Cost[j-1])
@@ -174,14 +190,15 @@ void AnnualSum()
 	            strcpy(Type[j],Type[j-1]);
 	            strcpy(Type[j-1],temps);
 			}
+		//show ranking
 		for(i=0;i<7;i++)
 			printf("%d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
 		
-		//Show Graph
+		//Alternative
 		printf("\n1: Show Income graph \n");
 		printf("2: Show Expenses graph\n");
 		printf("0: Back to Menu\n");
-	
+		//input choice
 		menugraph = InvalidInput("\nEnter your choice: ",0,2);
 		switch(menugraph){
 				case 1: graph(Year,1); break;

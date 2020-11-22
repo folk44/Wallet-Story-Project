@@ -17,7 +17,7 @@ int graph(int Year,int menu)
 	line(100,100,100,700);
 	
 	outtextxy(5,775,"**press Enter to close this window** ");
-	//Month mark on x-axis
+	//mark Month on x-axis
 	for(i=0;i<12;i++)
 	{
 		line((i+2)*100,685,(i+2)*100,715);
