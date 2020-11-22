@@ -10,12 +10,12 @@ int graph(int Year,int menu)
 	int x,y,i;
 	char month[12][4]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	
-	//x-axis
+	//draw x-axis
 	line(100,700,1400,700);
 	
-	//y-axis
+	//draw y-axis
 	line(100,100,100,700);
-	
+	//show instruction
 	outtextxy(5,775,"**press Enter to close this window** ");
 	//mark Month on x-axis
 	for(i=0;i<12;i++)
@@ -28,47 +28,58 @@ int graph(int Year,int menu)
 	float in[12],out[12],maxo=0,maxi=0;
 	char Filename[30],date[8];
 	FILE *fp;
-	//find max
+	
+	//open flie (Jan - Dec) to read and get data
 	for(i=0;i<12;i++)
 	{
 		sprintf(date,"%02d-%d",i+1,Year);
 		strcat(strcat(strcpy(Filename,"storage/"),date),"total.txt");
 		if((fp = fopen(Filename,"r"))==NULL)
 		{
+			//cannot open file
 			out[i]=-1;
 			in[i]=-1;	
 		}
-		else 
-		{
+		else //can open file
+		{	
+			//read & get data
 			fscanf(fp,"%f %f",&in[i],&out[i]);
 			fclose(fp);
+			//find maximum value of income & expenses in order to devide graph scale 
 			if(maxo<=out[i])
 			{
+				//fine maximum of Expenses
 				maxo=out[i];
 			}
 			if(maxi<=in[i])
 			{
+				//fine maximum of Income
 				maxi=in[i];
 			}
 		}
 	}
-	// Header & plot data
+	//Show Income graph (if user choose 1)
 	if(menu==1){
+		//plot data on graph
 		plotdata (maxi,in);
+		//show graph title
 		settextstyle(9,0,5);
 		outtextxy(550,50,"Income Graph");
 	}
-	else 
+	else //Show Expenses graph (if user choose 2)
 	{
+		//plot data on graph
 		plotdata (maxo,out);
+		//show graph title
 		settextstyle(9,0,5);
 		outtextxy(550,50,"Expenses Graph");
 	}
-
+	//show axis name
 	settextstyle(9,1,2);
 	outtextxy(50,450,"Value (Baht)");
 	settextstyle(9,0,2);
 	outtextxy(710,760,"Month");
+	
 	getch();
 	closegraph();
 	return 1;
@@ -83,14 +94,19 @@ void plotdata (float max, float data[])
 	{
 		if(data[i]!=-1)
 		{
-			circle(200+(i*100),700-((int)(data[i]*550/max)),5); //draw dot
-			//print value of money
+			//calculate scale
+			//x=200+(i*100)  //in Jan (x=200) in Fab (x=300) in ......
+			//y=700-(value of money*550/Maximum of value of money)
+			
+			circle(200+(i*100),700-((int)(data[i]*550/max)),5); //draw dot at (x,y)
+			
+			//print value of money on graph
 			sprintf(value,"%.2f",data[i]);
 			outtextxy(150+(i*100),650-((int)(data[i]*550/max)),value);
 			n+=1;
 			if(n==2)
 			{
-				//draw connection line
+				//draw connection line if two dots are adjacent
 				line(200+((i-1)*100),700-(int)(data[i-1]*550/max),200+(i*100),700-(int)(data[i]*550/max));
 				n=1;
 			}				
