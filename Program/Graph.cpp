@@ -98,7 +98,7 @@ void plotdata (float max, float data[])
 			//x=200+(i*100)  //in Jan (x=200) in Fab (x=300) in ......
 			//y=700-(value of money*550/Maximum of value of money)
 			
-			circle(200+(i*100),700-((int)(data[i]*550/max)),5); //draw dot at (x,y)
+			circle(200+(i*100),700-((int)(data[i]*550/max)),5); //draw dot on (x,y)
 			
 			//print value of money on graph
 			sprintf(value,"%.2f",data[i]);
