@@ -16,6 +16,7 @@ int InvalidInput(const char* text, int min_con, int max_con){
 	int input;
 	do{
 		printf("%s",text);
+		fflush(stdin);
 		scanf("%d",&input);
 		//Check valid choice.
 		if(input < min_con || input > max_con) printf("Invalid choice. Please try again.\n"); //Inform user.
