@@ -21,9 +21,12 @@ void Menu1(){
 		system("cls");
 		
 		//Interface menu1.
-		printf("1. Add item to list.\n");
-		printf("0. Exit\n");
-		menu = InvalidInput("Press : ",0,1);
+		printf("\n");
+		printf(" Note the income/expense menu.\n");
+		printf("\nPress any choice.\n\n");
+		printf(" 1. Add item to list.\n");
+		printf(" 0. Exit\n");
+		menu = InvalidInput("\nPress : ",0,1);
 		
 		//If press 0, exit.
 		if(menu == 0){

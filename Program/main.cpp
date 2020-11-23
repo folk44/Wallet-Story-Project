@@ -32,7 +32,7 @@ int main()
 		
 		//Display Menu
 		printf("\n Press any choice.\n\n");
-		printf(" 1: Add list to note.\n");
+		printf(" 1: Note the income/expense menu.\n");
 		printf(" 2: Show the table.\n");
 		printf(" 3: Summary.\n");
 		printf(" 0: Exit.\n");
