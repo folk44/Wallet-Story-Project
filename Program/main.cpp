@@ -26,15 +26,16 @@ int main()
 		fclose(fp);
 		//Show date.
 		getDate(date);
-		printf("Date : %s\n",date);
+		printf("\n Date : %s\n",date);
 		//Show Balance
-		printf("Balance : %.2f\n",balance);
+		printf(" Balance : %.2f\n",balance);
 		
 		//Display Menu
-		printf("1: \n");
-		printf("2: \n");
-		printf("3: Summary\n");
-		printf("0: Exit\n");
+		printf("\n Press any choice.\n\n");
+		printf(" 1: Add list to note.\n");
+		printf(" 2: Show the table.\n");
+		printf(" 3: Summary.\n");
+		printf(" 0: Exit.\n");
 		
 		//Check valid menu. If invalid, inform to user.
 		menu = InvalidInput("\nEnter your choice: ",0,3);
