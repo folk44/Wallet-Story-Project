@@ -79,18 +79,49 @@ void Showtable(struct list table_,char* in, char* out){
 	
 	//If income file exist.
 	if((fp = fopen(in,"r")) != NULL){
-		while(!feof(fp)){
-			char text[20] = "[";
-			//Get information			
-			fscanf(fp,"%s %d %f %s\n",&table_.name,&table_.type,&table_.amount,&table_.detail);
+		for( ; ; ){
+			char text[20] = "[";//For [Type]Name
+			char ch;//For character in Name.
+			
+			//Get information
+			//Get Name
+			int i = 0;
+			for( ; ;i++){
+				ch = fgetc(fp);
+				if(ch == '.') break;
+				table_.name[i] = ch;
+			}
+			table_.name[i] = '\0';
+			
+			//Get Type and Amount		
+			fscanf(fp," %d %f ",&table_.type,&table_.amount);
+			
+			//Get Detail.
+			i = 0;
+			for( ; ;i++){
+				ch = fgetc(fp);
+				if(ch == '.') break;
+				table_.detail[i] = ch;
+			}
+			table_.name[i] = '\0';
+			
+			//Increase total income.
 			in_amount+=table_.amount;
 			
 			//Set text.
 			strcat(text,type_income[table_.type]);
 			strcat(text,"]");
 			strcat(text,table_.name);
-				
+			
+			//Display	
 			printf("%-20s %-10.2f %-10s %-50s\n",text,table_.amount,"-",table_.detail);
+			
+			//For read '\n'
+			if(fgetc(fp) == '\n'){
+				if(fgetc(fp) == EOF) break;
+				else continue;
+			}
+			
 		}
 		fclose(fp);			
 	}
