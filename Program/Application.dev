@@ -115,7 +115,11 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
+<<<<<<< HEAD
 FileName=Graph.cpp
+=======
+FileName=Menu2.cpp
+>>>>>>> Menu2
 CompileCpp=1
 Folder=
 Compile=1

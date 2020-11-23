@@ -1,14 +1,11 @@
-#include<math.h>
-#include<conio.h>
-#include<iostream>
 #include "income.h"
-
 
 int graph(int Year,int menu)
 {
 	initwindow(1500,800);
 	int x,y,i;
 	char month[12][4]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	char text[100];
 	
 	//draw x-axis
 	line(100,700,1400,700);
@@ -16,7 +13,8 @@ int graph(int Year,int menu)
 	//draw y-axis
 	line(100,100,100,700);
 	//show instruction
-	outtextxy(5,775,"**press Enter to close this window** ");
+	strcpy(text,"**press Enter to close this window** ");
+	outtextxy(5,775,text);
 	//mark Month on x-axis
 	for(i=0;i<12;i++)
 	{
@@ -64,7 +62,8 @@ int graph(int Year,int menu)
 		plotdata (maxi,in);
 		//show graph title
 		settextstyle(9,0,5);
-		outtextxy(550,50,"Income Graph");
+		strcpy(text,"Income Graph");
+		outtextxy(550,50,text);
 	}
 	else //Show Expenses graph (if user choose 2)
 	{
@@ -72,13 +71,16 @@ int graph(int Year,int menu)
 		plotdata (maxo,out);
 		//show graph title
 		settextstyle(9,0,5);
-		outtextxy(550,50,"Expenses Graph");
+		strcpy(text,"Expenses Graph");
+		outtextxy(550,50,text);
 	}
 	//show axis name
 	settextstyle(9,1,2);
-	outtextxy(50,450,"Value (Baht)");
+	strcpy(text,"Value (Baht)");
+	outtextxy(50,450,text);
 	settextstyle(9,0,2);
-	outtextxy(710,760,"Month");
+	strcpy(text,"Month");
+	outtextxy(710,760,text);
 	
 	getch();
 	closegraph();
