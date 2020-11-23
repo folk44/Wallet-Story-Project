@@ -1,23 +1,30 @@
 #include <graphics.h>
 #include <stdio.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <ctype.h>
 #include <dos.h>
 #include <limits.h>
+#include <math.h>
+#include <conio.h>
 // Go to Menu1
 void Menu1();
 //Go to Menu2
-//void Menu2();
+void Menu2();
 //Go to Menu3
-void Menu3();
+
 void UserInput(const char*,char*);
 int InvalidInput(const char*, int, int);
 void getDate(char*);
 bool FindElement(int,int*,int);
 bool Valid_daymonth(int,int);
+
+void Menu3();
+void MonthlySum();
+void AnnualSum();
+int graph(int,int);
+void plotdata (float,float*);
 
 struct list{
 	//inex: income or expense.

@@ -33,7 +33,7 @@ int main()
 		//Display Menu
 		printf("1: \n");
 		printf("2: \n");
-		printf("3: \n");
+		printf("3: Summary\n");
 		printf("0: Exit\n");
 		
 		//Check valid menu. If invalid, inform to user.
@@ -42,7 +42,7 @@ int main()
 		//Go to selected menu.
 		switch(menu){
 			case 1: Menu1(); break;
-			case 2: printf("Go to Menu 2."); break;
+			case 2: Menu2(); break;
 			case 3: Menu3(); break;
 			default: printf("Thank you.");
 		}
