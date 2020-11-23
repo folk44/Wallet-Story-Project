@@ -151,7 +151,7 @@ void Save_inout(struct list input){
 	
 	//Save into the income or expense file.
 	fp = fopen(filename,"a+");
-	fprintf(fp,"%s %d %f %s\n",input.name,input.type,input.amount,input.detail);
+	fprintf(fp,"%s. %d %f %s.\n",input.name,input.type,input.amount,input.detail);
 	fclose(fp);
 }
 
