@@ -10,7 +10,7 @@
 // Go to Menu1
 void Menu1();
 //Go to Menu2
-//void Menu2();
+void Menu2();
 //Go to Menu3
 void Menu3();
 void UserInput(const char*,char*);
