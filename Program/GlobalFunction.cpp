@@ -5,6 +5,8 @@ void UserInput(const char* text,char* input){
 	fflush(stdin);
 	gets(input);//Input.
 	if(strcmp(input,"\0") == 0) strcpy(input,"-");//When input nothing.
+	//Make first alphabet to uppercase.
+	*input = toupper(*input);
 }
 //To check invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number.
 int InvalidInput(const char* text, int min_con, int max_con){
