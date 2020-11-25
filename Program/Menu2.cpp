@@ -8,10 +8,13 @@ void Menu2(){
 	do{
 		system("cls");
 		
-		//Choose option.
-		printf("1. Show table.\n");
-		printf("0. Exit\n");
-		menu = InvalidInput("Press : ",0,1);
+		//Interface & Choose option.
+		printf("\n");
+		printf(" Show table menu.\n");
+		printf("\nPress any choice.\n\n");
+		printf(" 1. Show table.\n");
+		printf(" 0. Exit.\n");
+		menu = InvalidInput("\nPress : ",0,1);
 		
 		//If press 0. Exit
 		if(menu == 0){
