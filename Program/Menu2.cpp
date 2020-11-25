@@ -67,30 +67,43 @@ void Showtable(struct list table_,char* in, char* out){
 	system("cls");
 	
 	printf("\nDate : %s\n",table_.date);
-	printf("\n%-20s %-10s %-10s %-50s\n","List","Income","Expense","Detail");
 	
 	//Check income or expense file exist.
 	if((fp = fopen(in,"r")) == NULL && (fp = fopen(out,"r")) == NULL){
 		printf("\nNo information to display.\n");
+		return;
 	}
 	
 	char type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
 	char type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
 	
+	//Show header.
+	printf("\n%-20s %-10s %-10s %-50s\n","List","Income","Expense","Detail");
 	//If income file exist.
 	if((fp = fopen(in,"r")) != NULL){
-		for( ; ; ){
+		while(!feof(fp)){
 			char text[20] = "[";//For [Type]Name
 			char ch;//For character in Name.
+			int exit = 0;
 			
 			//Get information
 			//Get Name
 			int i = 0;
 			for( ; ;i++){
 				ch = fgetc(fp);
-				if(ch == '.') break;
+				//Condition check all character
+				if(ch == '|') break;
+				//Check end of file.
+				if(ch == EOF){
+					exit = 1;
+					break;
+				}
 				table_.name[i] = ch;
 			}
+			//End of file, then exit.
+			if(exit == 1) break;
+			
+			//Make variable 'name' to string.
 			table_.name[i] = '\0';
 			
 			//Get Type and Amount		
@@ -100,10 +113,15 @@ void Showtable(struct list table_,char* in, char* out){
 			i = 0;
 			for( ; ;i++){
 				ch = fgetc(fp);
-				if(ch == '.') break;
+				//Condition check all character
+				if(ch == '|') break;
 				table_.detail[i] = ch;
 			}
-			table_.name[i] = '\0';
+			//Make variable 'detail' to string.
+			table_.detail[i] = '\0';
+			
+			//Move cursor to next line.
+			ch = fgetc(fp);
 			
 			//Increase total income.
 			in_amount+=table_.amount;
@@ -115,13 +133,6 @@ void Showtable(struct list table_,char* in, char* out){
 			
 			//Display	
 			printf("%-20s %-10.2f %-10s %-50s\n",text,table_.amount,"-",table_.detail);
-			
-			//For read '\n'
-			if(fgetc(fp) == '\n'){
-				if(fgetc(fp) == EOF) break;
-				else continue;
-			}
-			
 		}
 		fclose(fp);			
 	}
@@ -129,17 +140,60 @@ void Showtable(struct list table_,char* in, char* out){
 	//If expense file exist.
 	if((fp = fopen(out,"r")) != NULL){
 		while(!feof(fp)){
-			char text[20] = "[";			
-			fscanf(fp,"%s %d %f %s\n",&table_.name,&table_.type,&table_.amount,&table_.detail);
+			char text[20] = "[";//For [Type]Name
+			char ch;//For character in Name.
+			int exit = 0;
+			
+			//Get information
+			//Get Name
+			int i = 0;
+			for( ; ;i++){
+				ch = fgetc(fp);
+				//Condition check all character
+				if(ch == '|') break;
+				//Check end of file.
+				if(ch == EOF){
+					exit = 1;
+					break;
+				}
+				table_.name[i] = ch;
+			}
+			//End of file, then exit.
+			if(exit == 1) break;
+			
+			//Make variable 'name' to string.
+			table_.name[i] = '\0';
+			
+			//Get Type and Amount		
+			fscanf(fp," %d %f ",&table_.type,&table_.amount);
+			
+			//Get Detail.
+			i = 0;
+			for( ; ;i++){
+				ch = fgetc(fp);
+				//Condition check all character
+				if(ch == '|') break;
+				table_.detail[i] = ch;
+			}
+			//Make variable 'detail' to string.
+			table_.detail[i] = '\0';
+			
+			//Move cursor to next line.
+			ch = fgetc(fp);
+			
+			//Increase total income.
 			out_amount+=table_.amount;
 			
+			//Set text.
 			strcat(text,type_expense[table_.type]);
 			strcat(text,"]");
 			strcat(text,table_.name);
 			
+			//Display	
 			printf("%-20s %-10s %-10.2f %-50s\n",text,"-",table_.amount,table_.detail);
 		}
 		fclose(fp);
 	}
 	printf("\n%-20s %-10.2f %-10.2f\n","Total",in_amount,out_amount);
+	printf("\nBalance = %.2f\n",in_amount-out_amount);
 }
