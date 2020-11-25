@@ -39,39 +39,40 @@ void Menu1(){
 		do{
 			system("cls");
 			
+			printf("\nNote : \n\n");
 			//Input Income of Expense.
-			input.inout = InvalidInput("Income(Press 1) or Expense(Press 0) : ",0,1);
+			input.inout = InvalidInput("  Income(Press 1) or Expense(Press 0) : ",0,1);
 			
 			//Input name.
-			UserInput("Name",input.name);
+			UserInput("  Name",input.name);
 			
 			//Input type.(Separate income and expense)
 			input.type = Input_Type_list(input.inout);
 			
 			//Input amount.
-			printf("Amount : ");
+			printf("  Amount : ");
 			scanf("%f",&input.amount);
 			
 			//Input detail.
-			UserInput("Detail(If not want, press Enter.)",input.detail);
+			UserInput("  Detail(If not want, press Enter.)",input.detail);
 			
 			//Ask input date. If not, fill date.
 			int chk_date;
 			char date[15] = "\0";
 			getDate(date);
-			printf("Save in current date(%s)?\n",date);
+			printf("\nSave in current date(%s)?\n",date);
 			chk_date = InvalidInput("Press 1(Yes),0(No) : ",0,1);
 			if(chk_date == 0){
 				
 				//Fill date.
 				int day,month,year;
-				printf("Input only number:\n");
+				printf("  Input only number:\n");
 				do{
-					day = InvalidInput("Day  :",1,31);
-					month = InvalidInput("Month : ",1,12);
+					day = InvalidInput("  Day  :",1,31);
+					month = InvalidInput("  Month : ",1,12);
 					if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
 				}while(!(Valid_daymonth(day,month)));
-				year = InvalidInput("Year  : ",0,INT_MAX);
+				year = InvalidInput("  Year  : ",0,INT_MAX);
 				sprintf(input.date,"%02d-%02d-%d",day,month,year);
 			}
 			else{
@@ -80,14 +81,15 @@ void Menu1(){
 			
 			//Make sure user input correctly.
 			system("cls");
-			if(input.inout == 1) printf("\nIncome.\n");
-			else printf("\nExpense.\n");
-			printf("Name : %s\n",input.name);
-			if(input.inout == 1) printf("Type : %s\n",type_income[input.type]);
-			else printf("Type : %s\n",type_expense[input.type]);
-			printf("Amount : %.2f\n",input.amount);
-			printf("Detail : %s\n",input.detail);
-			printf("Date : %s\n",input.date);
+			printf("\nList : ");
+			if(input.inout == 1) printf("\n  Income.\n");
+			else printf("\n  Expense.\n");
+			printf("  Name : %s\n",input.name);
+			if(input.inout == 1) printf("  Type : %s\n",type_income[input.type]);
+			else printf("  Type : %s\n",type_expense[input.type]);
+			printf("  Amount : %.2f\n",input.amount);
+			printf("  Detail : %s\n",input.detail);
+			printf("  Date : %s\n",input.date);
 			
 			sub_menu = InvalidInput("Save?(Press 1(Yes),0(No)) : ",0,1);
 			if(sub_menu == 0 && InvalidInput("Exit this page?(Press 1(Yes),0(No)) : ",0,1) == 1){
@@ -124,18 +126,18 @@ int Input_Type_list(int inout){
 	int type_;
 	char list_type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
 	char list_type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
-	printf("Type: \n");
+	printf("  Type: \n");
 	if(inout == 1){
 		for(int i = 0; i < 8; i++){
-			printf("%d. %s\n",i+1,list_type_income[i]);
+			printf("  %d. %s\n",i+1,list_type_income[i]);
 		}
-		type_ = InvalidInput("Press : ",1,8);
+		type_ = InvalidInput("  Press : ",1,8);
 	}
 	else{
 		for(int i = 0; i < 7; i++){
-			printf("%d. %s\n",i+1,list_type_expense[i]);
+			printf("  %d. %s\n",i+1,list_type_expense[i]);
 		}
-		type_ = InvalidInput("Press : ",1,7);
+		type_ = InvalidInput("  Press : ",1,7);
 	}
 	return type_-1;
 }
