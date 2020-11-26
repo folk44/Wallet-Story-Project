@@ -8,15 +8,50 @@ void UserInput(const char* text,char* input){
 	//Make first alphabet to uppercase.
 	*input = toupper(*input);
 }
-//To check invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number.
-int InvalidInput(const char* text, int min_con, int max_con){
-	int input;
+//To check invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number,texterror for text.
+int InvalidInput(const char* text, int min_con, int max_con,const char* texterror,int type){
+	int input; 
 	do{
+		
+    // To read input 
+    char value[MAX_INPUT] = ""; 
+  
+    // To store numeric value of input if a  
+    // number (float or integer) 
+    double temp; 
+  
+    // To store integral value of input 
+    int n; 
+  
+    // To store string value of input 
+    char str[MAX_INPUT] = ""; 
+  
+    // Precision for integer checking 
+    double val = 1e-12; 
+  
+    fgets(value, 100, stdin); // Read input 
+  
+    // Check for integers. 
+    if (sscanf(value, "%lf", &temp) == 1)  
+    { 
+        n = (int)temp; // typecast to int. 
+        if (fabs(temp - n) / temp > val)  
+            printf("The input is a floating point\n");         
+        else 
+            printf("The input is an integer\n");         
+    } 
+  
+    // Check for string  
+    else if (sscanf(value, "%s", str) == 1)      
+        printf("The input is a string\n"); 
+      
+    else // No match.     
+        printf("input not recognized\n"); 
 		printf("%s",text);
 		fflush(stdin);
 		scanf("%d",&input);
 		//Check valid choice.
-		if(input < min_con || input > max_con) printf("Invalid choice. Please try again.\n"); //Inform user.
+		if(input < min_con || input > max_con) printf("%s \n",texterror); //Inform user.//Invalid choice. Please try again.
 	}while(input < min_con || input > max_con);
 	return input;
 }
