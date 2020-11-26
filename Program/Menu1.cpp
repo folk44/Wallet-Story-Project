@@ -41,27 +41,48 @@ void Menu1(){
 			
 			printf("\nNote : \n\n");
 			//Input Income of Expense.
-			input.inout = InvalidInput_Int("  Income(Press 1) or Expense(Press 0) : ",0,1,"Invalid choice! Please input again.");
+			input.inout = InvalidInput_Int("  Income(Press 1) or Expense(Press 2)(Back to menu press 0) : ",0,2,"Invalid choice! Please input again.");
+			if(input.inout == 0){
+				chk_exit = 1;
+				break;
+			}
 			
 			//Input name.
-			UserInput("  Name",input.name);
+			UserInput("  Name(Back to menu Type exit)",input.name);
+			if(strcmp(input.name,"Exit") == 0){
+				chk_exit = 1;
+				break;
+			}
 			
 			//Input type.(Separate income and expense)
 			input.type = Input_Type_list(input.inout);
 			
 			//Input amount.
-			input.amount = InvalidInput_Float("  Amount : ",0,INT_MAX,"Invalid Input! Please try again.");
+			input.amount = InvalidInput_Float("  Amount (Back to Menu press 0) : ",0,INT_MAX,"Invalid Input! Please try again.");
+			if(input.amount == 0){
+				chk_exit = 1;
+				break;
+			}
 			
 			//Input detail.
-			UserInput("  Detail(If not want, press Enter.)",input.detail);
+			UserInput("  Detail(If don\'t want to input, press only Enter)(Back to menu Type exit)",input.detail);
+			if(strcmp(input.name,"Exit") == 0){
+				chk_exit = 1;
+				break;
+			}
 			
 			//Ask input date. If not, fill date.
 			int chk_date;
 			char date[15] = "\0";
 			getDate(date);
 			printf("\nSave in current date(%s)?\n",date);
-			chk_date = InvalidInput_Int("Press 1(Yes),0(No) : ",0,1,"Invalid choice! Please input again.");
+			chk_date = InvalidInput_Int("Press 1(Yes), 2(No) (Back to Menu press 0) : ",0,2,"Invalid choice! Please input again.");
 			if(chk_date == 0){
+				chk_exit = 1;
+				break;
+			}
+			
+			if(chk_date == 2){
 				
 				//Fill date.
 				int day,month,year;
