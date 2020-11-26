@@ -56,7 +56,7 @@ void Menu2(){
 				month = InvalidInput_Int("Month : ",1,12,"Invalid month! Please input again.");
 				if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
 			}while(!(Valid_daymonth(day,month)));
-			year = InvalidInput_Int("Year  : ",0,10000,"Invalid year! Please input again.");
+			year = InvalidInput_Int("Year  : ",0,9999,"Invalid year! Please input again.");
 			sprintf(table.date,"%02d-%02d-%d",day,month,year);				
 		}while(sub_menu != 0);
 			

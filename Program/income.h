@@ -16,6 +16,7 @@ void Menu2();
 
 void UserInput(const char*,char*);
 int InvalidInput_Int(const char*, int, int,const char*);
+float InvalidInput_Float(const char*,float,float,const char*);
 void getDate(char*);
 bool FindElement(int,int*,int);
 bool Valid_daymonth(int,int);

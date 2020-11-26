@@ -39,7 +39,28 @@ int InvalidInput_Int(const char* text, int min_con, int max_con,const char* text
 	    } 
 	   
 	    else chk = 0;
-	
+		//Check valid choice.
+		if(!chk || input < min_con || input > max_con) printf("%s \n",texterror); //Inform user.//Invalid choice. Please try again.
+	}while(!chk || input < min_con || input > max_con);
+	return input;
+}
+float InvalidInput_Float(const char* text, float min_con, float max_con,const char* texterror){
+	float input;
+	int chk; 
+	do{
+		//Check input error.
+		chk = 1;
+	    // To read input 
+	    char value[100] = ""; 
+	  	
+	  	//Input.
+	    printf("%s",text);
+		fflush(stdin);
+		gets(value);
+	  
+	    // Check for not floats. 
+	    if (sscanf(value, "%f", &input) != 1) chk = 0;
+
 		//Check valid choice.
 		if(!chk || input < min_con || input > max_con) printf("%s \n",texterror); //Inform user.//Invalid choice. Please try again.
 	}while(!chk || input < min_con || input > max_con);

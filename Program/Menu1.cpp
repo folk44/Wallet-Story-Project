@@ -50,8 +50,7 @@ void Menu1(){
 			input.type = Input_Type_list(input.inout);
 			
 			//Input amount.
-			printf("  Amount : ");
-			scanf("%f",&input.amount);
+			input.amount = InvalidInput_Float("  Amount : ",0,INT_MAX,"Invalid Input! Please try again.");
 			
 			//Input detail.
 			UserInput("  Detail(If not want, press Enter.)",input.detail);
@@ -72,7 +71,7 @@ void Menu1(){
 					month = InvalidInput_Int("  Month : ",1,12,"Invalid month! Please input again.");
 					if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
 				}while(!(Valid_daymonth(day,month)));
-				year = InvalidInput_Int("  Year  : ",0,10000,"Invalid year! Please input again.");
+				year = InvalidInput_Int("  Year  : ",0,9999,"Invalid year! Please input again.");
 				sprintf(input.date,"%02d-%02d-%d",day,month,year);
 			}
 			else{
