@@ -38,30 +38,25 @@ void MonthlySum()
 	printf("\t  Monthly Summary\n\n");
 	//Input Month Year
 	do{
-		do{
-			printf("Input Month (back to MENU press 0): ");
-			scanf("%d",&Month);
-			if(Month < 0 || Month > 12) printf("Invalid Month. Please try again.\n"); //Inform user.
-		}while(Month < 0 || Month > 12);
-	if(Month==0){printf("\nBack to Menu \n");return;}
-	printf("Input Year  (back to MENU press 0): ");
-	scanf("%d",&Year);
-	if(Year==0){printf("\nBack to Menu \n");return;}
-	//change input to mm-yyyy
-	sprintf(date,"%02d-%d",Month,Year);
-	
-	//openfile mouth-yeartotal.txt
-	strcat(strcat(strcpy(Filename,"storage/"),date),"total.txt");
-	if((fp = fopen(Filename,"r"))==NULL)
-	{
-		//clear screen, show title and input again
-		system("cls");
-		printf("\t  Monthly Summary\n\n");
-		printf("Not Found!!\n");
-		printf("Please input again.\n");
-		i=0;
-	}
-	else i=1;
+		Month=InvalidInput_Int("Input Month (back to MENU press 0): ",0,12,"Invalid Month! Please input again.");
+		if(Month==0){printf("\nBack to Menu \n");return;}
+		Year=InvalidInput_Int("Input Year  (back to MENU press 0): ",0,9999,"Invalid Year! Please input again.");
+		if(Year==0){printf("\nBack to Menu \n");return;}
+		//change input to mm-yyyy
+		sprintf(date,"%02d-%d",Month,Year);
+		
+		//openfile mouth-yeartotal.txt
+		strcat(strcat(strcpy(Filename,"storage/"),date),"total.txt");
+		if((fp = fopen(Filename,"r"))==NULL)
+		{
+			//clear screen, show title and input again
+			system("cls");
+			printf("\t  Monthly Summary\n\n");
+			printf("Not Found!!\n");
+			printf("Please input again.\n");
+			i=0;
+		}
+		else i=1;
 	}while(i==0);
 	
 	system("cls");
@@ -132,8 +127,7 @@ void AnnualSum()
 	printf("\t  Annual Summary\n\n");
 	//Input Year
 	do{
-	printf("Input Year (back to MENU press 0): ");
-	scanf("%d",&Year);
+	Year=InvalidInput_Int("Input Year  (back to MENU press 0): ",0,9999,"Invalid Year! Please input again.");
 	if(Year==0) return;
 	//open yeartotle.txt
 	sprintf(date,"%d",Year);
