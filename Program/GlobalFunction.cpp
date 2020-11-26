@@ -9,50 +9,40 @@ void UserInput(const char* text,char* input){
 	*input = toupper(*input);
 }
 //To check invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number,texterror for text.
-int InvalidInput(const char* text, int min_con, int max_con,const char* texterror,int type){
-	int input; 
+int InvalidInput_Int(const char* text, int min_con, int max_con,const char* texterror){
+	int input, chk; 
 	do{
-		
-    // To read input 
-    char value[MAX_INPUT] = ""; 
-  
-    // To store numeric value of input if a  
-    // number (float or integer) 
-    double temp; 
-  
-    // To store integral value of input 
-    int n; 
-  
-    // To store string value of input 
-    char str[MAX_INPUT] = ""; 
-  
-    // Precision for integer checking 
-    double val = 1e-12; 
-  
-    fgets(value, 100, stdin); // Read input 
-  
-    // Check for integers. 
-    if (sscanf(value, "%lf", &temp) == 1)  
-    { 
-        n = (int)temp; // typecast to int. 
-        if (fabs(temp - n) / temp > val)  
-            printf("The input is a floating point\n");         
-        else 
-            printf("The input is an integer\n");         
-    } 
-  
-    // Check for string  
-    else if (sscanf(value, "%s", str) == 1)      
-        printf("The input is a string\n"); 
-      
-    else // No match.     
-        printf("input not recognized\n"); 
-		printf("%s",text);
+		//Check input error.
+		chk = 1;
+	    // To read input 
+	    char value[100] = ""; 
+	  
+	    // To store numeric value of input if a  
+	    // number (float or integer) 
+	    double temp;  
+	  
+	    // Precision for integer checking 
+	    double val = 1e-12; 
+	  	
+	  	//Input.
+	    printf("%s",text);
 		fflush(stdin);
-		scanf("%d",&input);
+		gets(value);
+	  
+	    // Check for integers. 
+	    if (sscanf(value, "%lf", &temp) == 1)  
+	    { 
+	        input = (int)temp; // typecast to int.
+	        //Check float.
+	        if (fabs(temp - input) / temp > val)  
+	            chk = 0;   
+	    } 
+	   
+	    else chk = 0;
+	
 		//Check valid choice.
-		if(input < min_con || input > max_con) printf("%s \n",texterror); //Inform user.//Invalid choice. Please try again.
-	}while(input < min_con || input > max_con);
+		if(!chk || input < min_con || input > max_con) printf("%s \n",texterror); //Inform user.//Invalid choice. Please try again.
+	}while(!chk || input < min_con || input > max_con);
 	return input;
 }
 //Get date. All of these parameter are pointer.

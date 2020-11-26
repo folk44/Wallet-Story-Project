@@ -12,7 +12,7 @@ void Menu3()
 	printf("0: Back to Main Menu\n");
 	
 	//Check valid menu. If invalid, inform to user.
-	menu3 = InvalidInput("\nEnter your choice: ",0,2);
+	menu3 = InvalidInput_Int("\nEnter your choice: ",0,2,"Invalid choice! Please input again.");
 	
 	//Go to selected menu.
 		switch(menu3){
@@ -111,7 +111,7 @@ void MonthlySum()
 	printf("\n1: Show another month \n");
 	printf("0: Back to Menu\n");
 	//input choice
-	int menu = InvalidInput("\nEnter your choice: ",0,1);
+	int menu = InvalidInput_Int("\nEnter your choice: ",0,1,"Invalid choice! Please input again.");
 	switch(menu){
 			case 1: MonthlySum(); break;
 			default: {printf("Back to Menu \n"); 
@@ -199,7 +199,7 @@ void AnnualSum()
 		printf("2: Show Expenses graph\n");
 		printf("0: Back to Menu\n");
 		//input choice
-		menugraph = InvalidInput("\nEnter your choice: ",0,2);
+		menugraph = InvalidInput_Int("\nEnter your choice: ",0,2,"Invalid choice! Please input again.");
 		switch(menugraph){
 				case 1: graph(Year,1); break;
 				case 2: graph(Year,2); break;

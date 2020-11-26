@@ -26,7 +26,7 @@ void Menu1(){
 		printf("\nPress any choice.\n\n");
 		printf(" 1. Add item to list.\n");
 		printf(" 0. Exit\n");
-		menu = InvalidInput("\nPress : ",0,1);
+		menu = InvalidInput_Int("\nPress : ",0,1,"Invalid choice! Please input again.");
 		
 		//If press 0, exit.
 		if(menu == 0){
@@ -41,7 +41,7 @@ void Menu1(){
 			
 			printf("\nNote : \n\n");
 			//Input Income of Expense.
-			input.inout = InvalidInput("  Income(Press 1) or Expense(Press 0) : ",0,1);
+			input.inout = InvalidInput_Int("  Income(Press 1) or Expense(Press 0) : ",0,1,"Invalid choice! Please input again.");
 			
 			//Input name.
 			UserInput("  Name",input.name);
@@ -61,18 +61,18 @@ void Menu1(){
 			char date[15] = "\0";
 			getDate(date);
 			printf("\nSave in current date(%s)?\n",date);
-			chk_date = InvalidInput("Press 1(Yes),0(No) : ",0,1);
+			chk_date = InvalidInput_Int("Press 1(Yes),0(No) : ",0,1,"Invalid choice! Please input again.");
 			if(chk_date == 0){
 				
 				//Fill date.
 				int day,month,year;
 				printf("  Input only number:\n");
 				do{
-					day = InvalidInput("  Day  :",1,31);
-					month = InvalidInput("  Month : ",1,12);
+					day = InvalidInput_Int("  Day  :",1,31,"Invalid day! Please input again.");
+					month = InvalidInput_Int("  Month : ",1,12,"Invalid month! Please input again.");
 					if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
 				}while(!(Valid_daymonth(day,month)));
-				year = InvalidInput("  Year  : ",0,INT_MAX);
+				year = InvalidInput_Int("  Year  : ",0,10000,"Invalid year! Please input again.");
 				sprintf(input.date,"%02d-%02d-%d",day,month,year);
 			}
 			else{
@@ -91,8 +91,8 @@ void Menu1(){
 			printf("  Detail : %s\n",input.detail);
 			printf("  Date : %s\n",input.date);
 			
-			sub_menu = InvalidInput("Save?(Press 1(Yes),0(No)) : ",0,1);
-			if(sub_menu == 0 && InvalidInput("Exit this page?(Press 1(Yes),0(No)) : ",0,1) == 1){
+			sub_menu = InvalidInput_Int("Save?(Press 1(Yes),0(No)) : ",0,1,"Invalid choice! Please input again.");
+			if(sub_menu == 0 && InvalidInput_Int("Exit this page?(Press 1(Yes),0(No)) : ",0,1,"Invalid choice! Please input again.") == 1){
 				chk_exit = 1;
 				break;
 			}
@@ -131,13 +131,13 @@ int Input_Type_list(int inout){
 		for(int i = 0; i < 8; i++){
 			printf("  %d. %s\n",i+1,list_type_income[i]);
 		}
-		type_ = InvalidInput("  Press : ",1,8);
+		type_ = InvalidInput_Int("  Press : ",1,8,"Invalid choice! Please input again.");
 	}
 	else{
 		for(int i = 0; i < 7; i++){
 			printf("  %d. %s\n",i+1,list_type_expense[i]);
 		}
-		type_ = InvalidInput("  Press : ",1,7);
+		type_ = InvalidInput_Int("  Press : ",1,7,"Invalid choice! Please input again.");
 	}
 	return type_-1;
 }

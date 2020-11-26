@@ -14,7 +14,7 @@ void Menu2(){
 		printf("\nPress any choice.\n\n");
 		printf(" 1. Show table.\n");
 		printf(" 0. Exit.\n");
-		menu = InvalidInput("\nPress : ",0,1);
+		menu = InvalidInput_Int("\nPress : ",0,1,"Invalid choice! Please input again.");
 		
 		//If press 0. Exit
 		if(menu == 0){
@@ -43,7 +43,7 @@ void Menu2(){
 			//Display table.
 			Showtable(table,file_in,file_out);
 			
-			sub_menu = InvalidInput("\nDo you want to see another date?(Press 1(Yes),0(No)) : ",0,1);
+			sub_menu = InvalidInput_Int("\nDo you want to see another date?(Press 1(Yes),0(No)) : ",0,1,"Invalid choice! Please input again.");
 			
 			//If not, exit this page.
 			if(sub_menu == 0) break;
@@ -52,11 +52,11 @@ void Menu2(){
 			int day,month,year;
 			printf("Input only number:\n");
 			do{
-				day = InvalidInput("Day  :",1,31);
-				month = InvalidInput("Month : ",1,12);
+				day = InvalidInput_Int("Day  :",1,31,"Invalid day! Please input again.");
+				month = InvalidInput_Int("Month : ",1,12,"Invalid month! Please input again.");
 				if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
 			}while(!(Valid_daymonth(day,month)));
-			year = InvalidInput("Year  : ",0,INT_MAX);
+			year = InvalidInput_Int("Year  : ",0,10000,"Invalid year! Please input again.");
 			sprintf(table.date,"%02d-%02d-%d",day,month,year);				
 		}while(sub_menu != 0);
 			
