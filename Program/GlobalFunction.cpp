@@ -8,7 +8,7 @@ void UserInput(const char* text,char* input){
 	//Make first alphabet to uppercase.
 	*input = toupper(*input);
 }
-//To check invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number,texterror for text.
+//To check integer invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number,texterror for text.
 int InvalidInput_Int(const char* text, int min_con, int max_con,const char* texterror){
 	int input, chk; 
 	do{
@@ -44,6 +44,7 @@ int InvalidInput_Int(const char* text, int min_con, int max_con,const char* text
 	}while(!chk || input < min_con || input > max_con);
 	return input;
 }
+//To check floating invalid input. text for constatn string, input for press number, min_con for the min number, max_con for the max number,texterror for text.
 float InvalidInput_Float(const char* text, float min_con, float max_con,const char* texterror){
 	float input;
 	int chk; 

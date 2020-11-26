@@ -63,14 +63,14 @@ TopLine=3
 LeftChar=1
 [Editor_2]
 <<<<<<< HEAD
-CursorCol=15
-CursorRow=33
-TopLine=40
+CursorCol=37
+CursorRow=69
+TopLine=51
 LeftChar=1
 [Editor_3]
 CursorCol=64
 CursorRow=47
-TopLine=51
+TopLine=1
 =======
 CursorCol=16
 CursorRow=28
@@ -116,12 +116,12 @@ LeftChar=1
 CursorCol=6
 >>>>>>> main
 CursorRow=202
-TopLine=169
+TopLine=106
 LeftChar=1
 [Editor_5]
 <<<<<<< HEAD
-CursorCol=12
-CursorRow=13
+CursorCol=3
+CursorRow=28
 TopLine=1
 =======
 CursorCol=5

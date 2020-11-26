@@ -122,7 +122,7 @@ void Menu1(){
 		
 		Save_inout(input);
 		Save_total(input);
-		if(input.inout == 0) Save_result(input);
+		Save_result(input);
 		
 		//Read file balance.txt
 		fp = fopen("storage/balance.txt","r");
@@ -239,7 +239,8 @@ void Save_result(struct list input){
 	//Save to mm-yyresult.txt
 	fp = fopen(filename,"w");
 	for(int i = 0; i < 7; i++){
-		if(i == input.type) fprintf(fp,"%f ",amount[i]+input.amount);
+		//Check amount if it is expense
+		if(i == input.type && input.inout == 2) fprintf(fp,"%f ",amount[i]+input.amount);
 		else fprintf(fp,"%f ",amount[i]);
 	}
 	fclose(fp);
@@ -262,7 +263,7 @@ void Save_result(struct list input){
 	//Save to mm-yyresult.txt
 	fp = fopen(filename,"w");
 	for(int i = 0; i < 7; i++){
-		if(i == input.type) fprintf(fp,"%f ",amount[i]+input.amount);
+		if(i == input.type && input.inout == 2) fprintf(fp,"%f ",amount[i]+input.amount);
 		else fprintf(fp,"%f ",amount[i]);
 	}
 	fclose(fp);
