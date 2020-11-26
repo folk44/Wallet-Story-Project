@@ -5,63 +5,43 @@ void Menu2(){
 	struct list table;
 	int menu;
 	
+	system("cls");
+	
+	//Get day of this day.
+	getDate(table.date);
+	
 	do{
-		system("cls");
+		//Setting file name.
+		char file_in[30] = "storage/";
+		char file_out[30] = "storage/";
 		
-		//Interface & Choose option.
-		printf("\n");
-		printf(" Show table menu.\n");
-		printf("\nPress any choice.\n\n");
-		printf(" 1. Show table.\n");
-		printf(" 0. Exit.\n");
-		menu = InvalidInput_Int("\nPress : ",0,1,"Invalid choice! Please input again.");
+		//Set outcome file name following by input date.
+		strcat(file_out,table.date);
+		strcat(file_out,"out.txt");
 		
-		//If press 0. Exit
-		if(menu == 0){
-			printf("Back to Main Menu \n");
-			delay(1000);
-			break;
-		}
+		//Set income file name following by input date.
+		strcat(file_in,table.date);
+		strcat(file_in,"in.txt");	
 		
-		//Get day of this day.
-		getDate(table.date);
+		//Display table.
+		Showtable(table,file_in,file_out);
 		
-		int sub_menu;
+		menu = InvalidInput_Int("\nDo you want to see another date?(Press 1(Yes),0(No)) : ",0,1,"Invalid choice! Please input again.");
+		
+		//If not, exit this page.
+		if(menu == 0) break;
+		
+		//Get wanted date.
+		int day,month,year;
+		printf("Input only number:\n");
 		do{
-			//Setting file name.
-			char file_in[30] = "storage/";
-			char file_out[30] = "storage/";
-			
-			//Set outcome file name following by input date.
-			strcat(file_out,table.date);
-			strcat(file_out,"out.txt");
-			
-			//Set income file name following by input date.
-			strcat(file_in,table.date);
-			strcat(file_in,"in.txt");	
-			
-			//Display table.
-			Showtable(table,file_in,file_out);
-			
-			sub_menu = InvalidInput_Int("\nDo you want to see another date?(Press 1(Yes),0(No)) : ",0,1,"Invalid choice! Please input again.");
-			
-			//If not, exit this page.
-			if(sub_menu == 0) break;
-			
-			//Get wanted date.
-			int day,month,year;
-			printf("Input only number:\n");
-			do{
-				day = InvalidInput_Int("Day  :",1,31,"Invalid day! Please input again.");
-				month = InvalidInput_Int("Month : ",1,12,"Invalid month! Please input again.");
-				if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
-			}while(!(Valid_daymonth(day,month)));
-			year = InvalidInput_Int("Year  : ",0,9999,"Invalid year! Please input again.");
-			sprintf(table.date,"%02d-%02d-%d",day,month,year);				
-		}while(sub_menu != 0);
-			
-		
-	}while(menu!=0);
+			day = InvalidInput_Int("Day  :",1,31,"Invalid day! Please input again.");
+			month = InvalidInput_Int("Month : ",1,12,"Invalid month! Please input again.");
+			if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
+		}while(!(Valid_daymonth(day,month)));
+		year = InvalidInput_Int("Year  : ",0,9999,"Invalid year! Please input again.");
+		sprintf(table.date,"%02d-%02d-%d",day,month,year);				
+	}while(menu != 0);
 	
 }
 void Showtable(struct list table_,char* in, char* out){
