@@ -3,11 +3,11 @@
 void walletstory()
 {
 	printf("\n\n\n\n\n\n\n\n\n\n\n");
-	printf("\tWW   W   WW       A       LL      LL      EEEEEE  TTTTTT         SSS    TTTTTT   OOOO   RRRRR   YYY    YYY\n"  );
-	printf("\tWW  WWW  WW     AA AA     LL      LL      EE        TT         SS    S    TT    OO  OO  RR  RR    YY  YY  \n");
-	printf("\tWW WW WW WW    AA   AA    LL      LL      EEEEE     TT           SS       TT    OO  OO  RRRRR       YY    \n");
-	printf("\tWWWW   WWWW   AAAAAAAAA   LL      LL      EE        TT        S    SS     TT    OO  OO  RR  RR      YY    \n"); 
-	printf("\tWWW     WWW  AA       AA  LLLLLL  LLLLLL  EEEEEE    TT          SSS       TT     OOOO   RR   RR     YY    \n");
+	printf("       WW   W   WW       A       LL      LL      EEEEEE  TTTTTT         SSS    TTTTTT    OOOO    RRRRR   YYY    YYY\n");
+	printf("       WW  WWW  WW     AA AA     LL      LL      EE        TT         SS    S    TT    OO    OO  RR  RR    YY  YY  \n");
+	printf("       WW WW WW WW    AA   AA    LL      LL      EEEEE     TT           SS       TT    OO    OO  RRRRR       YY    \n");
+	printf("       WWWW   WWWW   AAAAAAAAA   LL      LL      EE        TT        S    SS     TT    OO    OO  RR  RR      YY    \n"); 
+	printf("       WWW     WWW  AA       AA  LLLLLL  LLLLLL  EEEEEE    TT          SSS       TT      OOOO    RR   RR     YY    \n");
 	printf("\n\n\n\t");
 	system("pause");
 	system("cls");
@@ -17,11 +17,11 @@ void goodluck()
 {
 	system("cls");
 	printf("\n\n\n\n\n\n\n\n\n\n\n");
-	printf("\t\t\t   TTTTTT  HH  HH       A       NN   NN   KK  K      SSS           \n");
-	printf("\t\t\t     TT    HH  HH     AA AA     NNN  NN   KK K    SS     S         \n");
-	printf("\t\t\t     TT    HHHHHH    AA   AA    NN N NN   KKK       SS             \n");
-	printf("\t\t\t     TT    HH  HH   AAAAAAAAA   NN  NNN   KK K   S    SS           \n");
-	printf("\t\t\t     TT    HH  HH  AA       AA  NN   NN   KK  K    SSS      |=| |=| |=| \n\n");
+	printf("\t\t\t GGGGG     OOOO      OOOO    DDDDDD        LL      UU   UU    CCCC  KK  K \n");
+	printf("\t\t\tGG       OO    OO  OO    OO  DD   DDD      LL      UU   UU   CC     KK K  \n");
+	printf("\t\t\tGG  GGG  OO    OO  OO    OO  DD   DDD      LL      UU   UU  CC      KKK   \n");
+	printf("\t\t\tGG   G   OO    OO  OO    OO  DD   DDD      LL      UU   UU   CC     KK K  \n");
+	printf("\t\t\t GGGGG     OOOO      OOOO    DDDDDD        LLLLLL   UUUUU     CCCC  KK  K \n");
 	delay(1000);
 }
 
