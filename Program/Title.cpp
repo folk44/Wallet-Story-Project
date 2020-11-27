@@ -17,11 +17,11 @@ void goodluck()
 {
 	system("cls");
 	printf("\n\n\n\n\n\n\n\n\n\n\n");
-	printf("\t\t\t GGGGG     OOOO      OOOO    DDDDDD        LL      UU   UU    CCCC  KK  K \n");
-	printf("\t\t\tGG       OO    OO  OO    OO  DD   DDD      LL      UU   UU   CC     KK K  \n");
-	printf("\t\t\tGG  GGG  OO    OO  OO    OO  DD   DDD      LL      UU   UU  CC      KKK   \n");
-	printf("\t\t\tGG    G  OO    OO  OO    OO  DD   DDD      LL      UU   UU   CC     KK K  \n");
-	printf("\t\t\t GGGGG     OOOO      OOOO    DDDDDD        LLLLLL   UUUUU     CCCC  KK  K \n");
+	printf("\t\t  GGGGG     OOOO      OOOO    DDDDDD        LL      UU   UU    CCCC  KK  K \n");
+	printf("\t\t GG       OO    OO  OO    OO  DD   DDD      LL      UU   UU   CC     KK K  \n");
+	printf("\t\t GG  GGG  OO    OO  OO    OO  DD   DDD      LL      UU   UU  CC      KKK   \n");
+	printf("\t\t GG    G  OO    OO  OO    OO  DD   DDD      LL      UU   UU   CC     KK K  \n");
+	printf("\t\t  GGGGG     OOOO      OOOO    DDDDDD        LLLLLL   UUUUU     CCCC  KK  K   |=| |=| |=|\n");
 	printf("\n\n\n");
 	delay(1000);
 }
