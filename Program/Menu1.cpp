@@ -19,18 +19,16 @@ void Menu1(){
 	do{
 		//Clear screen.
 		system("cls");
-		
 		//Interface menu1.
-		printf("\n");
-		printf(" Note the income/expense menu.\n");
-		printf("\nPress any choice.\n\n");
-		printf(" 1. Add item to list.\n");
-		printf(" 0. Exit\n");
-		menu = InvalidInput_Int("\nPress : ",0,1,"Invalid choice! Please input again.");
+		titlemenu1();
+		printf("\n\t\t\t\t\t Press any choice.\n\n");
+		printf("\t\t\t\t\t 1. Add item to list.\n");
+		printf("\t\t\t\t\t 0. Back to main menu\n");
+		menu = InvalidInput_Int("\n\t\t\t\t\t Enter your choice: ",0,1,"\t\t\t\t\t Invalid choice! Please input again.");
 		
 		//If press 0, exit.
 		if(menu == 0){
-			printf("Back to Main Menu \n");
+			printf("\t\t\t\t\t Back to Main Menu \n"); 
 			delay(1000);
 			break;
 		}
@@ -38,17 +36,27 @@ void Menu1(){
 		int sub_menu,chk_exit = 0;//For check user continue to input.
 		do{
 			system("cls");
-			
-			printf("\nNote : \n\n");
+			titlemenu1();
+			printf("\n\t\t\t\t\t Note : ???\n\n");
+			printf("\n\t\t\t\t\t Press any choice.\n\n");
+			printf("\t\t\t\t\t 1: Income \n");
+			printf("\t\t\t\t\t 2: Expenses\n");
+			printf("\t\t\t\t\t 0: Back to menu\n");
 			//Input Income of Expense.
-			input.inout = InvalidInput_Int("  Income(Press 1) or Expense(Press 2)(Back to menu press 0) : ",0,2,"Invalid choice! Please input again.");
+			input.inout = InvalidInput_Int("\n\t\t\t\t\t Enter your choice: ",0,2,"\t\t\t\t\t Invalid choice! Please input again.");
 			if(input.inout == 0){
 				chk_exit = 1;
 				break;
 			}
 			
 			//Input name.
-			UserInput("  Name(Back to menu Type exit)",input.name);
+			system("cls");
+			titlemenu1();
+			if(input.inout==1)
+			printf("\n\t\t\t\t\t Note : Income\n\n");
+			if(input.inout==2)
+			printf("\n\t\t\t\t\t Note : Expense\n\n");
+			UserInput("\t\t\t\t\t  Name(Back to menu Type exit)",input.name);
 			if(strcmp(input.name,"Exit") == 0){
 				chk_exit = 1;
 				break;
@@ -58,14 +66,14 @@ void Menu1(){
 			input.type = Input_Type_list(input.inout);
 			
 			//Input amount.
-			input.amount = InvalidInput_Float("  Amount (Back to Menu press 0) : ",0,INT_MAX,"Invalid Input! Please try again.");
+			input.amount = InvalidInput_Float("\t\t\t\t\t  Amount (Back to menu Press 0) : ",0,INT_MAX,"\t\t\t\t\t  Invalid Input! Please try again.");
 			if(input.amount == 0){
 				chk_exit = 1;
 				break;
 			}
 			
 			//Input detail.
-			UserInput("  Detail(If don\'t want to input, press only Enter)(Back to menu Type exit)",input.detail);
+			UserInput("\t\t\t\t\t  Detail (Back to menu Type exit)",input.detail);
 			if(strcmp(input.name,"Exit") == 0){
 				chk_exit = 1;
 				break;
@@ -75,8 +83,8 @@ void Menu1(){
 			int chk_date;
 			char date[15] = "\0";
 			getDate(date);
-			printf("\nSave in current date(%s)?\n",date);
-			chk_date = InvalidInput_Int("Press 1(Yes), 2(No) (Back to Menu press 0) : ",0,2,"Invalid choice! Please input again.");
+			printf("\n\t\t\t\t\t Save in current date(%s)?\n",date);
+			chk_date = InvalidInput_Int("\t\t\t\t\t Press 1(Yes), 2(No) (Back to menu Press 0) : ",0,2,"\t\t\t\t\t Invalid choice! Please input again.");
 			if(chk_date == 0){
 				chk_exit = 1;
 				break;
@@ -86,13 +94,13 @@ void Menu1(){
 				
 				//Fill date.
 				int day,month,year;
-				printf("  Input only number:\n");
+				printf("\t\t\t\t\t  Input only number:\n");
 				do{
-					day = InvalidInput_Int("  Day  :",1,31,"Invalid day! Please input again.");
-					month = InvalidInput_Int("  Month : ",1,12,"Invalid month! Please input again.");
-					if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
+					day = InvalidInput_Int("\t\t\t\t\t  Day  :",1,31,"\t\t\t\t\t  Invalid day! Please input again.");
+					month = InvalidInput_Int("\t\t\t\t\t  Month : ",1,12,"\t\t\t\t\t  Invalid month! Please input again.");
+					if(!(Valid_daymonth(day,month))) printf("\t\t\t\t\t  Invalid choice. Please try again.\n");
 				}while(!(Valid_daymonth(day,month)));
-				year = InvalidInput_Int("  Year  : ",0,9999,"Invalid year! Please input again.");
+				year = InvalidInput_Int("\t\t\t\t\t  Year  : ",0,9999,"\t\t\t\t\t  Invalid year! Please input again.");
 				sprintf(input.date,"%02d-%02d-%d",day,month,year);
 			}
 			else{
@@ -101,18 +109,19 @@ void Menu1(){
 			
 			//Make sure user input correctly.
 			system("cls");
-			printf("\nList : ");
-			if(input.inout == 1) printf("\n  Income.\n");
-			else printf("\n  Expense.\n");
-			printf("  Name : %s\n",input.name);
-			if(input.inout == 1) printf("  Type : %s\n",type_income[input.type]);
-			else printf("  Type : %s\n",type_expense[input.type]);
-			printf("  Amount : %.2f\n",input.amount);
-			printf("  Detail : %s\n",input.detail);
-			printf("  Date : %s\n",input.date);
+			titlemenu1();
+			printf("\n\t\t\t\t\t List : ");
+			if(input.inout == 1) printf("\n\n\t\t\t\t\t  Income\n");
+			else printf("\n\n\t\t\t\t\t  Expense\n");
+			printf("\t\t\t\t\t  Name : %s\n",input.name);
+			if(input.inout == 1) printf("\t\t\t\t\t  Type : %s\n",type_income[input.type]);
+			else printf("\t\t\t\t\t  Type : %s\n",type_expense[input.type]);
+			printf("\t\t\t\t\t  Amount : %.2f\n",input.amount);
+			printf("\t\t\t\t\t  Detail : %s\n",input.detail);
+			printf("\t\t\t\t\t  Date : %s\n",input.date);
 			
-			sub_menu = InvalidInput_Int("Save?(Press 1(Yes),0(No)) : ",0,1,"Invalid choice! Please input again.");
-			if(sub_menu == 0 && InvalidInput_Int("Exit this page?(Press 1(Yes),0(No)) : ",0,1,"Invalid choice! Please input again.") == 1){
+			sub_menu = InvalidInput_Int("\t\t\t\t\t Save?(Press 1(Yes),0(No)) : ",0,1,"\t\t\t\t\t Invalid choice! Please input again.");
+			if(sub_menu == 0 && InvalidInput_Int("\t\t\t\t\t Exit this page?(Press 1(Yes),0(No)) : ",0,1,"\t\t\t\t\t Invalid choice! Please input again.") == 1){
 				chk_exit = 1;
 				break;
 			}
@@ -136,7 +145,7 @@ void Menu1(){
 		
 		fclose(fp);
 		
-		printf("Save successfully.\n");
+		printf("\n\t\t\t\t\t Save successfully.\n");
 		
 		delay(1000);
 	}while(menu != 0);
@@ -146,18 +155,18 @@ int Input_Type_list(int inout){
 	int type_;
 	char list_type_income [8][20] = {"Refund","Special","Revenue","Free","Business income","Withdraw","Borrow","Other"};
 	char list_type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
-	printf("  Type: \n");
+	printf("\t\t\t\t\t  Type: \n");
 	if(inout == 1){
 		for(int i = 0; i < 8; i++){
-			printf("  %d. %s\n",i+1,list_type_income[i]);
+			printf("\t\t\t\t\t  %d. %s\n",i+1,list_type_income[i]);
 		}
-		type_ = InvalidInput_Int("  Press : ",1,8,"Invalid choice! Please input again.");
+		type_ = InvalidInput_Int("\t\t\t\t\t  Enter your choice: ",1,8,"\t\t\t\t\t  Invalid choice! Please input again.");
 	}
 	else{
 		for(int i = 0; i < 7; i++){
-			printf("  %d. %s\n",i+1,list_type_expense[i]);
+			printf("\t\t\t\t\t  %d. %s\n",i+1,list_type_expense[i]);
 		}
-		type_ = InvalidInput_Int("  Press : ",1,7,"Invalid choice! Please input again.");
+		type_ = InvalidInput_Int("\t\t\t\t\t  Enter your choice: ",1,7,"\t\t\t\t\t  Invalid choice! Please input again.");
 	}
 	return type_-1;
 }

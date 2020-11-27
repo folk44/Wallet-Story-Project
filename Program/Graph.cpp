@@ -13,7 +13,7 @@ int graph(int Year,int menu)
 	//draw y-axis
 	line(100,100,100,700);
 	//show instruction
-	strcpy(text,"**press Enter to close this window** ");
+	strcpy(text,"**Press Enter to close this window** ");
 	outtextxy(5,775,text);
 	//mark Month on x-axis
 	for(i=0;i<12;i++)

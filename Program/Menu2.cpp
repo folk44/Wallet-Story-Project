@@ -6,7 +6,7 @@ void Menu2(){
 	int menu;
 	
 	system("cls");
-	
+	titlemenu2();
 	//Get day of this day.
 	getDate(table.date);
 	
@@ -25,21 +25,21 @@ void Menu2(){
 		
 		//Display table.
 		Showtable(table,file_in,file_out);
-		
-		menu = InvalidInput_Int("\nDo you want to see another date?(Press 1(Yes),0(No)) : ",0,1,"Invalid choice! Please input again.");
+		printf("\t\t\t\t       ---------------------------------------------------\n");
+		menu = InvalidInput_Int("\n\t\t\t\t\tsee another date?(Press 1(Yes),0(No)) : ",0,1,"\t\t\t\t\tInvalid choice! Please input again.");
 		
 		//If not, exit this page.
 		if(menu == 0) break;
 		
 		//Get wanted date.
 		int day,month,year;
-		printf("Input only number:\n");
+		printf("\t\t\t\t\tInput only number:\n");
 		do{
-			day = InvalidInput_Int("Day  :",1,31,"Invalid day! Please input again.");
-			month = InvalidInput_Int("Month : ",1,12,"Invalid month! Please input again.");
-			if(!(Valid_daymonth(day,month))) printf("Invalid choice. Please try again.\n");
+			day = InvalidInput_Int("\t\t\t\t\tDay  :",1,31,"\t\t\t\t\tInvalid day! Please input again.");
+			month = InvalidInput_Int("\t\t\t\t\t Month : ",1,12,"\t\t\t\t\tInvalid month! Please input again.");
+			if(!(Valid_daymonth(day,month))) printf("\t\t\t\t\tInvalid choice. Please try again.\n");
 		}while(!(Valid_daymonth(day,month)));
-		year = InvalidInput_Int("Year  : ",0,9999,"Invalid year! Please input again.");
+		year = InvalidInput_Int("\t\t\t\t\tYear  : ",0,9999,"\t\t\t\t\tInvalid year! Please input again.");
 		sprintf(table.date,"%02d-%02d-%d",day,month,year);				
 	}while(menu != 0);
 	
@@ -48,12 +48,12 @@ void Showtable(struct list table_,char* in, char* out){
 	FILE *fp;
 	float in_amount = 0, out_amount = 0;
 	system("cls");
-	
-	printf("\nDate : %s\n",table_.date);
+	titlemenu2();
+	printf("\n\t\t\t\t\tDate : %s\n",table_.date);
 	
 	//Check income or expense file exist.
 	if((fp = fopen(in,"r")) == NULL && (fp = fopen(out,"r")) == NULL){
-		printf("\nNo information to display.\n");
+		printf("\n\t\t\t\t\tNo information to display.\n");
 		return;
 	}
 	
@@ -61,7 +61,7 @@ void Showtable(struct list table_,char* in, char* out){
 	char type_expense [7][20] = {"Food","Transport","Accommodation","Groceries","Services","Utilities","Others"};
 	
 	//Show header.
-	printf("\n%-20s %-10s %-10s %-50s\n","List","Income","Expense","Detail");
+	printf("\n\t\t\t\t\t%-20s %-10s %-10s %-50s\n","List","Income","Expense","Detail");
 	//If income file exist.
 	if((fp = fopen(in,"r")) != NULL){
 		while(!feof(fp)){
@@ -90,7 +90,7 @@ void Showtable(struct list table_,char* in, char* out){
 			table_.name[i] = '\0';
 			
 			//Get Type and Amount		
-			fscanf(fp," %d %f ",&table_.type,&table_.amount);
+			fscanf(fp,"%d %f ",&table_.type,&table_.amount);
 			
 			//Get Detail.
 			i = 0;
@@ -115,7 +115,7 @@ void Showtable(struct list table_,char* in, char* out){
 			strcat(text,table_.name);
 			
 			//Display	
-			printf("%-20s %-10.2f %-10s %-50s\n",text,table_.amount,"-",table_.detail);
+			printf("\t\t\t\t\t%-20s %-10.2f %-10s %-50s\n",text,table_.amount,"-",table_.detail);
 		}
 		fclose(fp);			
 	}
@@ -173,10 +173,10 @@ void Showtable(struct list table_,char* in, char* out){
 			strcat(text,table_.name);
 			
 			//Display	
-			printf("%-20s %-10s %-10.2f %-50s\n",text,"-",table_.amount,table_.detail);
+			printf("\t\t\t\t\t%-20s %-10s %-10.2f %-50s\n",text,"-",table_.amount,table_.detail);
 		}
 		fclose(fp);
 	}
-	printf("\n%-20s %-10.2f %-10.2f\n","Total",in_amount,out_amount);
-	printf("\nBalance = %.2f\n",in_amount-out_amount);
+	printf("\n\t\t\t\t\t%-20s %-10.2f %-10.2f\n","Total",in_amount,out_amount);
+	printf("\n\t\t\t\t\tBalance = %.2f\n",in_amount-out_amount);
 }

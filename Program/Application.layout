@@ -4,7 +4,7 @@ Order=0,2,5,4,6,3,1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-Focused=2
+Focused=4
 =======
 Order=0,1,2,5,3
 <<<<<<< HEAD
@@ -116,7 +116,7 @@ LeftChar=1
 CursorCol=6
 >>>>>>> main
 CursorRow=202
-TopLine=106
+TopLine=1
 LeftChar=1
 [Editor_5]
 <<<<<<< HEAD

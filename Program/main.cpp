@@ -8,6 +8,7 @@
 float balance;
 int main()
 {
+	walletstory();
 	//Check file "balance.txt". If not, create one and set balance = 0.
 	FILE *fp;
 	if((fp = fopen("storage/balance.txt","r")) == NULL){
@@ -25,27 +26,29 @@ int main()
 		fscanf(fp,"%f",&balance);
 		fclose(fp);
 		//Show date.
-		getDate(date);
-		printf("\n Date : %s\n",date);
+		getDate(date); 
+		Title();
+		printf("\n\t\t\t\t\t Date : %s\n",date);
 		//Show Balance
-		printf(" Balance : %.2f\n",balance);
+		printf("\t\t\t\t\t Balance : %.2f\n",balance);
+		printf("\t\t\t\t\t--------------------------------------------\n");
 		
 		//Display Menu
-		printf("\n Press any choice.\n\n");
-		printf(" 1: Note the income/expense menu.\n");
-		printf(" 2: Show the table.\n");
-		printf(" 3: Summary.\n");
-		printf(" 0: Exit.\n");
+		printf("\n\t\t\t\t\t Press any choice.\n\n");
+		printf("\t\t\t\t\t 1: Note the income/expense menu.\n"); 
+		printf("\t\t\t\t\t 2: Shows daily income & expense history.\n");
+		printf("\t\t\t\t\t 3: Summary.\n");
+		printf("\t\t\t\t\t 0: Exit.\n");
 		
 		//Check valid menu. If invalid, inform to user.
-		menu = InvalidInput_Int("\nEnter your choice: ",0,3,"Invalid choice! Please input again.");
+		menu = InvalidInput_Int("\n\t\t\t\t\t Enter your choice: ",0,3,"\t\t\t\t\t Invalid choice! Please input again.");
 		
 		//Go to selected menu.
 		switch(menu){
 			case 1: Menu1(); break;
 			case 2: Menu2(); break;
 			case 3: Menu3(); break;
-			default: printf("Thank you.");
+			default: goodluck();
 		}
 	}while(menu != 0);
 	

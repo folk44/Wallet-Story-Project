@@ -9,7 +9,7 @@ void Menu3()
 	printf("   Summary Menu\n\n");
 	printf("1: Monthly Summary \n");
 	printf("2: Annual Summary\n");
-	printf("0: Back to Main Menu\n");
+	printf("0: Back to main menu\n");
 	
 	//Check valid menu. If invalid, inform to user.
 	menu3 = InvalidInput_Int("\nEnter your choice: ",0,2,"Invalid choice! Please input again.");
@@ -18,7 +18,7 @@ void Menu3()
 		switch(menu3){
 			case 1: MonthlySum(); break;
 			case 2: AnnualSum(); break;
-			default: printf("Back to Main Menu \n"); break;
+			default: printf("Back to main menu \n"); break;
 		}
 		delay(1000);
 	}while(menu3 != 0);
@@ -38,10 +38,10 @@ void MonthlySum()
 	printf("\t  Monthly Summary\n\n");
 	//Input Month Year
 	do{
-		Month=InvalidInput_Int("Input Month (back to MENU press 0): ",0,12,"Invalid Month! Please input again.");
-		if(Month==0){printf("\nBack to Menu \n");return;}
-		Year=InvalidInput_Int("Input Year  (back to MENU press 0): ",0,9999,"Invalid Year! Please input again.");
-		if(Year==0){printf("\nBack to Menu \n");return;}
+		Month=InvalidInput_Int("Input Month (back to menu Press 0): ",0,12,"Invalid Month! Please input again.");
+		if(Month==0){printf("\nBack to menu \n");return;}
+		Year=InvalidInput_Int("Input Year  (back to menu Press 0): ",0,9999,"Invalid Year! Please input again.");
+		if(Year==0){printf("\nBack to menu \n");return;}
 		//change input to mm-yyyy
 		sprintf(date,"%02d-%d",Month,Year);
 		
@@ -104,12 +104,12 @@ void MonthlySum()
 	printf("\n");
 	//show Alternative
 	printf("\n1: Show another month \n");
-	printf("0: Back to Menu\n");
+	printf("0: Back to menu\n");
 	//input choice
 	int menu = InvalidInput_Int("\nEnter your choice: ",0,1,"Invalid choice! Please input again.");
 	switch(menu){
 			case 1: MonthlySum(); break;
-			default: {printf("Back to Menu \n"); 
+			default: {printf("Back to menu \n"); 
 					delay(1000);}break;
 			}	
 }
@@ -127,7 +127,7 @@ void AnnualSum()
 	printf("\t  Annual Summary\n\n");
 	//Input Year
 	do{
-	Year=InvalidInput_Int("Input Year  (back to MENU press 0): ",0,9999,"Invalid Year! Please input again.");
+	Year=InvalidInput_Int("Input Year  (back to menu Press 0): ",0,9999,"Invalid Year! Please input again.");
 	if(Year==0) return;
 	//open yeartotle.txt
 	sprintf(date,"%d",Year);
@@ -191,13 +191,13 @@ void AnnualSum()
 		//Alternative
 		printf("\n1: Show Income graph \n");
 		printf("2: Show Expenses graph\n");
-		printf("0: Back to Menu\n");
+		printf("0: Back to menu\n");
 		//input choice
 		menugraph = InvalidInput_Int("\nEnter your choice: ",0,2,"Invalid choice! Please input again.");
 		switch(menugraph){
 				case 1: graph(Year,1); break;
 				case 2: graph(Year,2); break;
-				default: {printf("Back to Menu \n"); 
+				default: {printf("Back to menu \n"); 
 							delay(1000);}break;
 			}	
 	}while(menugraph != 0);	

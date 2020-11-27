@@ -8,6 +8,12 @@
 #include <limits.h>
 #include <math.h>
 #include <conio.h>
+void walletstory ();
+void goodluck();
+void Title();
+void titlemenu1();
+void titlemenu2();
+void titlemenu3();
 // Go to Menu1
 void Menu1();
 //Go to Menu2
