@@ -8,7 +8,7 @@ void walletstory()
 	printf("       WW WW WW WW    AA   AA    LL      LL      EEEEE     TT           SS       TT    OO    OO  RRRRR       YY    \n");
 	printf("       WWWW   WWWW   AAAAAAAAA   LL      LL      EE        TT        S    SS     TT    OO    OO  RR  RR      YY    \n"); 
 	printf("       WWW     WWW  AA       AA  LLLLLL  LLLLLL  EEEEEE    TT          SSS       TT      OOOO    RR   RR     YY    \n");
-	printf("\n\n\n\t");
+	printf("\n\n\n       ");
 	system("pause");
 	system("cls");
 }
@@ -20,8 +20,9 @@ void goodluck()
 	printf("\t\t\t GGGGG     OOOO      OOOO    DDDDDD        LL      UU   UU    CCCC  KK  K \n");
 	printf("\t\t\tGG       OO    OO  OO    OO  DD   DDD      LL      UU   UU   CC     KK K  \n");
 	printf("\t\t\tGG  GGG  OO    OO  OO    OO  DD   DDD      LL      UU   UU  CC      KKK   \n");
-	printf("\t\t\tGG   G   OO    OO  OO    OO  DD   DDD      LL      UU   UU   CC     KK K  \n");
+	printf("\t\t\tGG    G  OO    OO  OO    OO  DD   DDD      LL      UU   UU   CC     KK K  \n");
 	printf("\t\t\t GGGGG     OOOO      OOOO    DDDDDD        LLLLLL   UUUUU     CCCC  KK  K \n");
+	printf("\n\n\n");
 	delay(1000);
 }
 

@@ -28,10 +28,12 @@ int main()
 		//Show date.
 		getDate(date); 
 		Title();
+		printf("\t\t\t\t\t\t\t  Main Menu\n");
+		printf("\t\t\t\t\t--------------------------------------------\n");
 		printf("\n\t\t\t\t\t Date : %s\n",date);
 		//Show Balance
 		printf("\t\t\t\t\t Balance : %.2f\n",balance);
-		printf("\t\t\t\t\t--------------------------------------------\n");
+		printf("\t\t\t\t\t********************************************\n");
 		
 		//Display Menu
 		printf("\n\t\t\t\t\t Press any choice.\n\n");
