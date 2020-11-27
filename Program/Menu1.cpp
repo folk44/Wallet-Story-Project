@@ -28,7 +28,7 @@ void Menu1(){
 		
 		//If press 0, exit.
 		if(menu == 0){
-			printf("\t\t\t\t\t Back to Main Menu \n"); 
+			printf("\n\t\t\t\t\t Back to Main Menu \n"); 
 			delay(1000);
 			break;
 		}

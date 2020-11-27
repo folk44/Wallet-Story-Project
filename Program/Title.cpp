@@ -15,6 +15,14 @@ void walletstory()
 
 void goodluck()
 {
+	system("cls");
+	printf("\n\n\n\n\n\n\n\n\n\n\n");
+	printf("\t\t\t   TTTTTT  HH  HH       A       NN   NN   KK  K      SSS           \n");
+	printf("\t\t\t     TT    HH  HH     AA AA     NNN  NN   KK K    SS     S         \n");
+	printf("\t\t\t     TT    HHHHHH    AA   AA    NN N NN   KKK       SS             \n");
+	printf("\t\t\t     TT    HH  HH   AAAAAAAAA   NN  NNN   KK K   S    SS           \n");
+	printf("\t\t\t     TT    HH  HH  AA       AA  NN   NN   KK  K    SSS      |=| |=| |=| \n\n");
+	delay(1000);
 }
 
 void Title()

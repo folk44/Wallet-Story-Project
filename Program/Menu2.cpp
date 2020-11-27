@@ -35,11 +35,11 @@ void Menu2(){
 		int day,month,year;
 		printf("\t\t\t\t\tInput only number:\n");
 		do{
-			day = InvalidInput_Int("\t\t\t\t\tDay  :",1,31,"\t\t\t\t\tInvalid day! Please input again.");
+			day = InvalidInput_Int("\t\t\t\t\t Day   : ",1,31,"\t\t\t\t\tInvalid day! Please input again.");
 			month = InvalidInput_Int("\t\t\t\t\t Month : ",1,12,"\t\t\t\t\tInvalid month! Please input again.");
 			if(!(Valid_daymonth(day,month))) printf("\t\t\t\t\tInvalid choice. Please try again.\n");
 		}while(!(Valid_daymonth(day,month)));
-		year = InvalidInput_Int("\t\t\t\t\tYear  : ",0,9999,"\t\t\t\t\tInvalid year! Please input again.");
+		year = InvalidInput_Int("\t\t\t\t\t Year  : ",0,9999,"\t\t\t\t\tInvalid year! Please input again.");
 		sprintf(table.date,"%02d-%02d-%d",day,month,year);				
 	}while(menu != 0);
 	

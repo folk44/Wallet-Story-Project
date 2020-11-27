@@ -4,23 +4,23 @@ void Menu3()
 	int menu3;
 	do{
 	system("cls");
-	
+	titlemenu3();
 	//Display Menu3
-	printf("   Summary Menu\n\n");
-	printf("1: Monthly Summary \n");
-	printf("2: Annual Summary\n");
-	printf("0: Back to main menu\n");
+	printf("\n\t\t\t\t\t Press any choice.\n\n");
+	printf("\t\t\t\t\t 1: Monthly Summary \n");
+	printf("\t\t\t\t\t 2: Annual Summary\n");
+	printf("\t\t\t\t\t 0: Back to main menu\n");
 	
 	//Check valid menu. If invalid, inform to user.
-	menu3 = InvalidInput_Int("\nEnter your choice: ",0,2,"Invalid choice! Please input again.");
+	menu3 = InvalidInput_Int("\n\t\t\t\t\t Enter your choice: ",0,2,"\t\t\t\t\t Invalid choice! Please input again.");
 	
 	//Go to selected menu.
 		switch(menu3){
 			case 1: MonthlySum(); break;
 			case 2: AnnualSum(); break;
-			default: printf("Back to main menu \n"); break;
+			default: {printf("\n\t\t\t\t\t Back to main menu \n");delay(1000);} break;
 		}
-		delay(1000);
+		
 	}while(menu3 != 0);
 	
 }
@@ -35,13 +35,14 @@ void MonthlySum()
 	FILE *fp;
 	
 	system("cls");
-	printf("\t  Monthly Summary\n\n");
+	titlemenu3();
+	printf("\n\t\t\t\t\t\t Monthly Summary\n\n");
 	//Input Month Year
 	do{
-		Month=InvalidInput_Int("Input Month (back to menu Press 0): ",0,12,"Invalid Month! Please input again.");
-		if(Month==0){printf("\nBack to menu \n");return;}
-		Year=InvalidInput_Int("Input Year  (back to menu Press 0): ",0,9999,"Invalid Year! Please input again.");
-		if(Year==0){printf("\nBack to menu \n");return;}
+		Month=InvalidInput_Int("\t\t\t\t\t Input Month (back to menu Press 0): ",0,12,"\t\t\t\t\t Invalid Month! Please input again.");
+		if(Month==0){printf("\n\t\t\t\t\t Back to menu \n");return;}
+		Year=InvalidInput_Int("\t\t\t\t\t Input Year  (back to menu Press 0): ",0,9999,"\t\t\t\t\t Invalid Year! Please input again.");
+		if(Year==0){printf("\n\t\t\t\t\t Back to menu \n");return;}
 		//change input to mm-yyyy
 		sprintf(date,"%02d-%d",Month,Year);
 		
@@ -51,21 +52,23 @@ void MonthlySum()
 		{
 			//clear screen, show title and input again
 			system("cls");
-			printf("\t  Monthly Summary\n\n");
-			printf("Not Found!!\n");
-			printf("Please input again.\n");
+			titlemenu3();
+			printf("\n\t\t\t\t\t Monthly Summary\n\n");
+			printf("\t\t\t\t\t Not Found!!\n");
+			printf("\t\t\t\t\t Please input again.\n");
 			i=0;
 		}
 		else i=1;
 	}while(i==0);
 	
 	system("cls");
+	titlemenu3();
 	//show Title 
-	printf("   Monthly Summary [%s %d]\n",month[Month-1],Year);
+	printf("\n\t\t\t\t\t Monthly Summary [%s %d]\n",month[Month-1],Year);
 	//read and show income,expense
 	fscanf(fp,"%f %f",&in,&out);
-    printf("\nIncome Total  : %.2f Baht \n",in);
-    printf("Expense Total : %.2f Baht \n",out);
+    printf("\n\t\t\t\t\t Income Total  : %.2f Baht \n",in);
+    printf("\t\t\t\t\t Expense Total : %.2f Baht \n",out);
     fclose(fp);
     
     //To show Ranking
@@ -75,7 +78,7 @@ void MonthlySum()
 	strcat(strcat(strcpy(Filename,"storage/"),date),"result.txt");
 	fp = fopen(Filename,"r");
 	//title
-	printf("\nRanking of Expense \n");
+	printf("\n\t\t\t\t\t Ranking of Expense \n");
 	//read and get in Cost[]
 	i=0;
 	while(!feof(fp))
@@ -100,16 +103,18 @@ void MonthlySum()
 		}}
 	//Show ranking
 	for(i=0;i<7;i++)
-		printf("%d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
+		printf("\t\t\t\t\t %d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
 	printf("\n");
 	//show Alternative
-	printf("\n1: Show another month \n");
-	printf("0: Back to menu\n");
+	printf("\t\t\t\t\t--------------------------------------------\n");
+	printf("\n\t\t\t\t\t Press any choice.\n\n");
+	printf("\n\t\t\t\t\t 1: Show another month \n");
+	printf("\t\t\t\t\t 0: Back to menu\n");
 	//input choice
-	int menu = InvalidInput_Int("\nEnter your choice: ",0,1,"Invalid choice! Please input again.");
+	int menu = InvalidInput_Int("\n\t\t\t\t\t Enter your choice: ",0,1,"\t\t\t\t\t Invalid choice! Please input again.");
 	switch(menu){
 			case 1: MonthlySum(); break;
-			default: {printf("Back to menu \n"); 
+			default: {printf("\n\t\t\t\t\t Back to menu \n"); 
 					delay(1000);}break;
 			}	
 }
@@ -123,11 +128,12 @@ void AnnualSum()
 	FILE *fp;
 	
 	system("cls");
+	titlemenu3();
 	//show Title
-	printf("\t  Annual Summary\n\n");
+	printf("\n\t\t\t\t\t Annual Summary\n\n");
 	//Input Year
 	do{
-	Year=InvalidInput_Int("Input Year  (back to menu Press 0): ",0,9999,"Invalid Year! Please input again.");
+	Year=InvalidInput_Int("\t\t\t\t\t Input Year  (back to menu Press 0): ",0,9999,"\t\t\t\t\t Invalid Year! Please input again.");
 	if(Year==0) return;
 	//open yeartotle.txt
 	sprintf(date,"%d",Year);
@@ -136,9 +142,10 @@ void AnnualSum()
 	{
 		//clear screen, show title and input again
 		system("cls");
-		printf("\t  Annual Summary\n\n");
-		printf("Not Found!!\n");
-		printf("Please input again.\n");
+		titlemenu3();
+		printf("\n\t\t\t\t\t Annual Summary\n\n");
+		printf("\t\t\t\t\t Not Found!!\n");
+		printf("\t\t\t\t\t Please input again.\n");
 		i=0;
 	}
 	else i=1;
@@ -147,12 +154,13 @@ void AnnualSum()
 	int menugraph;
 	do{
 		system("cls");
+		titlemenu3();
 		//title
-		printf("     Annual Summary [%d]\n",Year);
+		printf("\n\t\t\t\t\t Annual Summary [%d]\n",Year);
 		//To show income,expense
 		fscanf(fp,"%f %f",&in,&out);
-	    printf("\nIncome Total  : %.2f Baht \n",in);
-	    printf("Expense Total : %.2f Baht \n",out);
+	    printf("\n\t\t\t\t\t Income Total  : %.2f Baht \n",in);
+	    printf("\t\t\t\t\t Expense Total : %.2f Baht \n",out);
 	    fclose(fp);
 	    
 	    //To show Ranking
@@ -162,7 +170,7 @@ void AnnualSum()
 		strcat(strcat(strcpy(Filename,"storage/"),date),"result.txt");
 	    fp = fopen(Filename,"r");
 		//title
-		printf("\nRanking of Expense \n");
+		printf("\n\t\t\t\t\t Ranking of Expense \n");
 		//read and get in Cost[]
 		i=0;
 		while(!feof(fp))
@@ -186,18 +194,20 @@ void AnnualSum()
 			}
 		//show ranking
 		for(i=0;i<7;i++)
-			printf("%d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
+			printf("\t\t\t\t\t %d. [%-13s] %-10.2f Baht\n",i+1,Type[i],Cost[i]);
 		
 		//Alternative
-		printf("\n1: Show Income graph \n");
-		printf("2: Show Expenses graph\n");
-		printf("0: Back to menu\n");
+		printf("\t\t\t\t\t--------------------------------------------\n");
+		printf("\n\t\t\t\t\t Press any choice.\n\n");
+		printf("\n\t\t\t\t\t 1: Show Income graph \n");
+		printf("\t\t\t\t\t 2: Show Expenses graph\n");
+		printf("\t\t\t\t\t 0: Back to menu\n");
 		//input choice
-		menugraph = InvalidInput_Int("\nEnter your choice: ",0,2,"Invalid choice! Please input again.");
+		menugraph = InvalidInput_Int("\n\t\t\t\t\t Enter your choice: ",0,2,"\t\t\t\t\t Invalid choice! Please input again.");
 		switch(menugraph){
 				case 1: graph(Year,1); break;
 				case 2: graph(Year,2); break;
-				default: {printf("Back to menu \n"); 
+				default: {printf("\n\t\t\t\t\t Back to menu \n"); 
 							delay(1000);}break;
 			}	
 	}while(menugraph != 0);	
