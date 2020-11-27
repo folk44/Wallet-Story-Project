@@ -56,7 +56,7 @@ void Menu1(){
 			printf("\n\t\t\t\t\t Note : Income\n\n");
 			if(input.inout==2)
 			printf("\n\t\t\t\t\t Note : Expense\n\n");
-			UserInput("\t\t\t\t\t  Name(Back to menu Type exit)",input.name);
+			UserInput("\t\t\t\t\t  List name(Back to menu Type exit)",input.name);
 			if(strcmp(input.name,"Exit") == 0){
 				chk_exit = 1;
 				break;
@@ -113,7 +113,7 @@ void Menu1(){
 			printf("\n\t\t\t\t\t List : ");
 			if(input.inout == 1) printf("\n\n\t\t\t\t\t  Income\n");
 			else printf("\n\n\t\t\t\t\t  Expense\n");
-			printf("\t\t\t\t\t  Name : %s\n",input.name);
+			printf("\t\t\t\t\t  List name : %s\n",input.name);
 			if(input.inout == 1) printf("\t\t\t\t\t  Type : %s\n",type_income[input.type]);
 			else printf("\t\t\t\t\t  Type : %s\n",type_expense[input.type]);
 			printf("\t\t\t\t\t  Amount : %.2f\n",input.amount);
