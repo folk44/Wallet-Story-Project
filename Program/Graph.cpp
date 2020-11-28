@@ -82,7 +82,7 @@ int graph(int Year,int menu)
 	strcpy(text,"Month");
 	outtextxy(710,760,text);
 	
-	getch();
+	_getch();
 	closegraph();
 	return 1;
 }
